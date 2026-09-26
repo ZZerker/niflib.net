@@ -19,13 +19,7 @@
 
 namespace Niflib
 {
-	#if OpenTK
-	using OpenTK;
-	#elif SharpDX
-	using SharpDX;
-	#elif MonoGame
-	using Microsoft.Xna.Framework;
-	#endif
+	using System.Numerics;
 	using System;
 	using System.IO;
 
@@ -115,7 +109,7 @@ namespace Niflib
         public float BumpMapLumaOffset;
 
         /// <summary>
-        /// The bump map matrix
+        /// The bump map Matrix4x4
         /// </summary>
         public Vector3 BumpMapMatrix;
 

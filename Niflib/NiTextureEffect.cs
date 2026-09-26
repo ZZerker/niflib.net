@@ -19,14 +19,7 @@
 
 namespace Niflib
 {
-	#if OpenTK
-	using OpenTK;
-	using Matrix = OpenTK.Matrix4;
-	#elif SharpDX
-	using SharpDX;
-	#elif MonoGame
-	using Microsoft.Xna.Framework;
-	#endif
+	using System.Numerics;
 	using System;
 	using System.IO;
 
@@ -36,9 +29,9 @@ namespace Niflib
     public class NiTextureEffect : NiDynamicEffect
 	{
         /// <summary>
-        /// The model projection matrix
+        /// The model projection Matrix4x4
         /// </summary>
-        public Matrix ModelProjectionMatrix;
+        public Matrix4x4 ModelProjectionMatrix;
 
         /// <summary>
         /// The model projection transform

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * DAWN OF LIGHT - The first free open source DAoC server emulator
  * 
  * This program is free software; you can redistribute it and/or
@@ -24,14 +24,7 @@ namespace Niflib.Extensions
 	using System.Linq;
 	using System.Collections.Generic;
 	using Niflib;
-	#if OpenTK
-	using OpenTK;
-	using Matrix = OpenTK.Matrix4;
-	#elif SharpDX
-	using SharpDX;
-	#elif MonoGame
-	using Microsoft.Xna.Framework;
-	#endif
+	using System.Numerics;
 
 	/// <summary>
 	/// Triangle Indexes Struct
@@ -143,7 +136,7 @@ namespace Niflib.Extensions
 		{
 			if (geom.Data != null && geom.Data.IsValid() && geom.Data.Object != null)
 			{
-				Matrix transformation = geom.GetWorldMatrixFromNode();
+				Matrix4x4 transformation = geom.GetWorldMatrixFromNode();
 				// Shape Parsing
 				var shapeData = geom.Data.Object as NiTriShapeData;
 				if (shapeData != null && shapeData.HasVertices && shapeData.NumVertices >= 3)
@@ -161,16 +154,16 @@ namespace Niflib.Extensions
 			return new TriangleCollection { Vertices = new Vector3[0], Indices = new TriangleIndex[0] };
 		}
 		
-		public static TriangleCollection GetTrianglesFromGeometryShape(this NiTriShapeData shapeData, Matrix transformationMatrix)
+		public static TriangleCollection GetTrianglesFromGeometryShape(this NiTriShapeData shapeData, Matrix4x4 transformationMatrix)
 		{
             return new TriangleCollection
             {
-            	Vertices = shapeData.Vertices.Select(vert => { Vector3 trans; Vector3.Transform(ref vert, ref transformationMatrix, out trans); return trans; }).ToArray(),
+			Vertices = shapeData.Vertices.Select(vert => NumericsTransform.Transform(vert, transformationMatrix)).ToArray(),
             	Indices = shapeData.Triangles.Select(tri => new TriangleIndex { A = tri.X, B = tri.Y, C = tri.Z, }).ToArray()
             };
 		}
 		
-		public static TriangleCollection GetTrianglesFromGeometryStrips(this NiTriStripsData stripsData, Matrix transformationMatrix)
+		public static TriangleCollection GetTrianglesFromGeometryStrips(this NiTriStripsData stripsData, Matrix4x4 transformationMatrix)
 		{
 			var stripsLength = stripsData.Points.Length;
             var indices = stripsData.Points.Select(strip =>
@@ -201,60 +194,31 @@ namespace Niflib.Extensions
 			
             return new TriangleCollection
             {
-            	Vertices = stripsData.Vertices.Select(vert => { Vector3 trans; Vector3.Transform(ref vert, ref transformationMatrix, out trans); return trans; }).ToArray(),
+			Vertices = stripsData.Vertices.Select(vert => NumericsTransform.Transform(vert, transformationMatrix)).ToArray(),
             	Indices = indices.SelectMany(tri => tri).ToArray()
             };
 		}
 		
 		/// <summary>
-		/// Compute World Matrix Starting From Node and Reading all Parents Transformations
+		/// Compute World Matrix4x4 Starting From Node and Reading all Parents Transformations
 		/// </summary>
 		/// <param name="leaf"></param>
 		/// <returns></returns>
-		public static Matrix GetWorldMatrixFromNode(this NiAVObject leaf)
+		public static Matrix4x4 GetWorldMatrixFromNode(this NiAVObject leaf)
 		{
 			var current = leaf;
-            var worldMatrix = Matrix.Identity;
+            var worldMatrix = Matrix4x4.Identity;
             // For Each Parent Node
 			while (current != null)
 			{
-				// Append Transformation To Matrix
-				Matrix intermediate;
-				
-				#if SharpDX
-				Matrix.Multiply(ref worldMatrix, ref current.Rotation, out intermediate);
-				worldMatrix = intermediate;
-				
-				var scale = Matrix.Scaling(current.Scale);
-				Matrix.Multiply(ref worldMatrix, ref scale, out intermediate);
-				worldMatrix = intermediate;
-				
-				var translate = Matrix.Translation(current.Translation.X, current.Translation.Y, current.Translation.Z);
-				Matrix.Multiply(ref worldMatrix, ref translate, out intermediate);
-				worldMatrix = intermediate;
-				#elif MonoGame
-				Matrix.Multiply(ref worldMatrix, ref current.Rotation, out intermediate);
-				worldMatrix = intermediate;
-				
-				var scale = Matrix.CreateScale(current.Scale);
-				Matrix.Multiply(ref worldMatrix, ref scale, out intermediate);
-				worldMatrix = intermediate;
-				
-				var translate = Matrix.CreateTranslation(current.Translation.X, current.Translation.Y, current.Translation.Z);
-				Matrix.Multiply(ref worldMatrix, ref translate, out intermediate);
-				worldMatrix = intermediate;
-				#else
-				Matrix.Mult(ref worldMatrix, ref current.Rotation, out intermediate);
-				worldMatrix = intermediate;
-				
-				var scale = Matrix.CreateScale(current.Scale);
-				Matrix.Mult(ref worldMatrix, ref scale, out intermediate);
-				worldMatrix = intermediate;
-				
-				var translate = Matrix.CreateTranslation(current.Translation.X, current.Translation.Y, current.Translation.Z);
-				Matrix.Mult(ref worldMatrix, ref translate, out intermediate);
-				worldMatrix = intermediate;
-				#endif
+				// Append Transformation To Matrix4x4
+				worldMatrix = NumericsTransform.Multiply(worldMatrix, current.Rotation);
+
+				var scale = Matrix4x4.CreateScale(current.Scale);
+				worldMatrix = NumericsTransform.Multiply(worldMatrix, scale);
+
+				var translate = Matrix4x4.CreateTranslation(current.Translation.X, current.Translation.Y, current.Translation.Z);
+				worldMatrix = NumericsTransform.Multiply(worldMatrix, translate);
 				
 				current = current.Parent;
 			}
@@ -331,19 +295,13 @@ namespace Niflib.Extensions
 			                            lookup[(uint)ind].Select(i => tris.Indices[i])
 			                            .Aggregate(new Vector3(0, 0, 0),
 			                                       (v, t) => {
-			                                       	Vector3 AB;
-			                                       	Vector3 AC;
-			                                       	Vector3.Subtract(ref tris.Vertices[t.B], ref tris.Vertices[t.A], out AB);
-			                                       	Vector3.Subtract(ref tris.Vertices[t.C], ref tris.Vertices[t.A], out AC);
-			                                       	Vector3 cross;
-			                                       	Vector3.Cross(ref AB, ref AC, out cross);
-			                                       	Vector3 crossnorms;
-			                                       	Vector3.Normalize(ref cross, out crossnorms);
-			                                       	Vector3 result;
-			                                       	Vector3.Add(ref v, ref crossnorms, out result);
-			                                       	return result;
+			                                           var AB = Vector3.Subtract(tris.Vertices[t.B], tris.Vertices[t.A]);
+			                                           var AC = Vector3.Subtract(tris.Vertices[t.C], tris.Vertices[t.A]);
+			                                           var cross = Vector3.Cross(AB, AC);
+			                                           var crossnorms = Normalize(cross);
+			                                           return Vector3.Add(v, crossnorms);
 			                                       }
-			                                       , a => { Vector3 n; Vector3.Normalize(ref a, out n); return n; })
+			                                       , a => Normalize(a))
 			                           ).ToArray();
 		}
 		
@@ -381,6 +339,21 @@ namespace Niflib.Extensions
 				Vertices = vertices,
 				Indices = indices,
 			};
+		}
+
+		private static Vector3 Normalize(Vector3 value)
+		{
+			var length = (float)Math.Sqrt(value.X * value.X + value.Y * value.Y + value.Z * value.Z);
+			if (Math.Abs(length) < 1e-6f)
+			{
+				return value;
+			}
+
+			var inverse = 1f / length;
+			value.X *= inverse;
+			value.Y *= inverse;
+			value.Z *= inverse;
+			return value;
 		}
 	}
 }

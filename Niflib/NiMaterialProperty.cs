@@ -19,14 +19,7 @@
 
 namespace Niflib
 {
-	#if OpenTK
-	using Color3 = OpenTK.Graphics.Color4;
-	#elif SharpDX
-	using SharpDX;
-	#elif MonoGame
-	using Microsoft.Xna.Framework;
-	using Color3 = Microsoft.Xna.Framework.Color;
-	#endif
+	using System.Numerics;
 	using System;
 	using System.IO;
 	

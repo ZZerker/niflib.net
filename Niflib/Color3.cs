@@ -19,28 +19,17 @@
 
 namespace Niflib
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    public struct Color3
+    {
+        public float Red;
+        public float Green;
+        public float Blue;
 
-    /// <summary>
-    /// Class NiColorExtraData.
-    /// </summary>
-    public class NiColorExtraData : NiExtraData
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public Color4 Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiColorExtraData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiColorExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = reader.ReadColor4();
-		}
-	}
+        public Color3(float red, float green, float blue)
+        {
+            this.Red = red;
+            this.Green = green;
+            this.Blue = blue;
+        }
+    }
 }

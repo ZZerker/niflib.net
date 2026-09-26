@@ -19,18 +19,7 @@
 
 namespace Niflib
 {
-	#if OpenTK
-	using OpenTK;
-	using OpenTK.Graphics;
-	using Matrix = OpenTK.Matrix4;
-	using Color3 = OpenTK.Graphics.Color4;
-	#elif SharpDX
-	using SharpDX;
-	#elif MonoGame
-	using Microsoft.Xna.Framework;
-	using Color3 = Microsoft.Xna.Framework.Color;
-	using Color4 = Microsoft.Xna.Framework.Color;
-	#endif
+	using System.Numerics;
 	using System;
 	using System.IO;
 	
@@ -138,11 +127,7 @@ namespace Niflib
         /// <returns>Color3.</returns>
         public static Color3 ReadColor3(this BinaryReader reader)
 		{
-			#if OpenTK
-			return new Color3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), 0);
-			#else
 			return new Color3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-			#endif
 		}
 
         /// <summary>
@@ -169,17 +154,19 @@ namespace Niflib
         /// Reads the matrix33.
         /// </summary>
         /// <param name="reader">The reader.</param>
-        /// <returns>Matrix.</returns>
-        public static Matrix ReadMatrix33(this BinaryReader reader)
+        /// <returns>Matrix4x4.</returns>
+        public static Matrix4x4 ReadMatrix33(this BinaryReader reader)
 		{
-			Matrix identity = Matrix.Identity;
-			for (int i = 0; i < 3; i++)
-			{
-				for (int j = 0; j < 3; j++)
-				{
-					identity[j, i] = reader.ReadSingle();
-				}
-			}
+			Matrix4x4 identity = Matrix4x4.Identity;
+			identity.M11 = reader.ReadSingle();
+			identity.M21 = reader.ReadSingle();
+			identity.M31 = reader.ReadSingle();
+			identity.M12 = reader.ReadSingle();
+			identity.M22 = reader.ReadSingle();
+			identity.M32 = reader.ReadSingle();
+			identity.M13 = reader.ReadSingle();
+			identity.M23 = reader.ReadSingle();
+			identity.M33 = reader.ReadSingle();
 			return identity;
 		}
 	}

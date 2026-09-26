@@ -19,13 +19,7 @@
 
 namespace Niflib
 {
-	#if OpenTK
-	using OpenTK;
-	#elif SharpDX
-	using SharpDX;
-	#elif MonoGame
-	using Microsoft.Xna.Framework;
-	#endif
+	using System.Numerics;
 	using System;
 	using System.IO;
 

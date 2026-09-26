@@ -19,14 +19,7 @@
 
 namespace Niflib
 {
-	#if OpenTK
-	using OpenTK;
-	using Matrix = OpenTK.Matrix4;
-	#elif SharpDX
-	using SharpDX;
-	#elif MonoGame
-	using Microsoft.Xna.Framework;
-	#endif
+	using System.Numerics;
 	using System;
 	using System.IO;
 
@@ -38,7 +31,7 @@ namespace Niflib
         /// <summary>
         /// The rotation
         /// </summary>
-        public Matrix Rotation;
+        public Matrix4x4 Rotation;
 
         /// <summary>
         /// The translation
