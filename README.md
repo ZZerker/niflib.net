@@ -3,8 +3,6 @@ C# .NET Managed Library Handling NIF (NetImmerse/GameBryo game engine) file form
 
 ## Binaries
 
-[![Build status](https://ci.appveyor.com/api/projects/status/7jp9ct1w01ntaah8?svg=true)](https://ci.appveyor.com/project/dol-leodagan/niflib-net)
-
 https://github.com/dol-leodagan/niflib.net/releases/latest
 
 ## Origin
