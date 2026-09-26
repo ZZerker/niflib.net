@@ -119,6 +119,11 @@ public class NiTexturingProperty : NiProperty
     public uint NumShaderTextures;
 
     /// <summary>
+    /// The shader textures, null where a slot has no map
+    /// </summary>
+    public ShaderTexDesc[] ShaderTextures = [];
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="NiTexturingProperty"/> class.
     /// </summary>
     /// <param name="file">The file.</param>
@@ -166,18 +171,29 @@ public class NiTexturingProperty : NiProperty
         {
             this.Decal0Texture = new TexDesc(file, reader);
         }
+        // Decals 1 to 3 exist only when the texture count covers them (nifxml)
+        if (this.TextureCount >= 8 && reader.ReadBoolean(Version))
+        {
+            this.Decal1Texture = new TexDesc(file, reader);
+        }
+        if (this.TextureCount >= 9 && reader.ReadBoolean(Version))
+        {
+            this.Decal2Texture = new TexDesc(file, reader);
+        }
+        if (this.TextureCount >= 10 && reader.ReadBoolean(Version))
+        {
+            this.Decal3Texture = new TexDesc(file, reader);
+        }
         if (base.Version >= eNifVersion.VER_10_0_1_0)
         {
             this.NumShaderTextures = reader.ReadUInt32();
-            int num = 0;
-            while ((long)num < (long)((ulong)this.NumShaderTextures))
+            this.ShaderTextures = new ShaderTexDesc[this.NumShaderTextures];
+            for (var i = 0; i < this.ShaderTextures.Length; i++)
             {
                 if (reader.ReadBoolean(Version))
                 {
-                    new TexDesc(file, reader);
-                    reader.ReadUInt32();
+                    this.ShaderTextures[i] = new ShaderTexDesc(file, reader);
                 }
-                num++;
             }
         }
     }
