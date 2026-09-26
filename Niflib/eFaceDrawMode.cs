@@ -17,30 +17,29 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eFaceDrawMode
+/// </summary>
+public enum eFaceDrawMode : uint
+{
     /// <summary>
-    /// Enum eFaceDrawMode
+    /// The dra w_ cc w_ o r_ both
     /// </summary>
-    public enum eFaceDrawMode : uint
-	{
-        /// <summary>
-        /// The dra w_ cc w_ o r_ both
-        /// </summary>
-        DRAW_CCW_OR_BOTH,
-        /// <summary>
-        /// The dra w_ CCW
-        /// </summary>
-        DRAW_CCW,
-        /// <summary>
-        /// The dra w_ cw
-        /// </summary>
-        DRAW_CW,
-        /// <summary>
-        /// The dra w_ both
-        /// </summary>
-        DRAW_BOTH
-    }
+    DRAW_CCW_OR_BOTH,
+    /// <summary>
+    /// The dra w_ CCW
+    /// </summary>
+    DRAW_CCW,
+    /// <summary>
+    /// The dra w_ cw
+    /// </summary>
+    DRAW_CW,
+    /// <summary>
+    /// The dra w_ both
+    /// </summary>
+    DRAW_BOTH
 }

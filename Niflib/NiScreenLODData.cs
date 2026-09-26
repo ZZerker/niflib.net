@@ -17,61 +17,60 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiScreenLODData.
+/// </summary>
+public class NiScreenLODData : NiLODData
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The bound center
+    /// </summary>
+    public Vector3 BoundCenter;
 
     /// <summary>
-    /// Class NiScreenLODData.
+    /// The bound radius
     /// </summary>
-    public class NiScreenLODData : NiLODData
-	{
-        /// <summary>
-        /// The bound center
-        /// </summary>
-        public Vector3 BoundCenter;
+    public float BoundRadius;
 
-        /// <summary>
-        /// The bound radius
-        /// </summary>
-        public float BoundRadius;
+    /// <summary>
+    /// The world center
+    /// </summary>
+    public Vector3 WorldCenter;
 
-        /// <summary>
-        /// The world center
-        /// </summary>
-        public Vector3 WorldCenter;
+    /// <summary>
+    /// The world radius
+    /// </summary>
+    public float WorldRadius;
 
-        /// <summary>
-        /// The world radius
-        /// </summary>
-        public float WorldRadius;
+    /// <summary>
+    /// The proportion levels
+    /// </summary>
+    public float[] ProportionLevels;
 
-        /// <summary>
-        /// The proportion levels
-        /// </summary>
-        public float[] ProportionLevels;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiScreenLODData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiScreenLODData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.BoundCenter = reader.ReadVector3();
-			this.BoundRadius = reader.ReadSingle();
-			this.WorldCenter = reader.ReadVector3();
-			this.WorldRadius = reader.ReadSingle();
-			uint num = reader.ReadUInt32();
-			this.ProportionLevels = new float[num];
-			int num2 = 0;
-			while ((long)num2 < (long)((ulong)num))
-			{
-				this.ProportionLevels[num2] = reader.ReadSingle();
-				num2++;
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiScreenLODData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiScreenLODData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.BoundCenter = reader.ReadVector3();
+        this.BoundRadius = reader.ReadSingle();
+        this.WorldCenter = reader.ReadVector3();
+        this.WorldRadius = reader.ReadSingle();
+        uint num = reader.ReadUInt32();
+        this.ProportionLevels = new float[num];
+        int num2 = 0;
+        while ((long)num2 < (long)((ulong)num))
+        {
+            this.ProportionLevels[num2] = reader.ReadSingle();
+            num2++;
+        }
+    }
 }

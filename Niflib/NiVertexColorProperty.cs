@@ -17,46 +17,45 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiVertexColorProperty.
+/// </summary>
+public class NiVertexColorProperty : NiProperty
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public ushort Flags;
 
     /// <summary>
-    /// Class NiVertexColorProperty.
+    /// The vertex mode
     /// </summary>
-    public class NiVertexColorProperty : NiProperty
-	{
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public ushort Flags;
+    public uint VertexMode;
 
-        /// <summary>
-        /// The vertex mode
-        /// </summary>
-        public uint VertexMode;
+    /// <summary>
+    /// The lighting mode
+    /// </summary>
+    public uint LightingMode;
 
-        /// <summary>
-        /// The lighting mode
-        /// </summary>
-        public uint LightingMode;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiVertexColorProperty"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        /// <exception cref="Exception">unsupported data!</exception>
-        public NiVertexColorProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Flags = reader.ReadUInt16();
-			if (base.Version > eNifVersion.VER_20_0_0_5)
-			{
-				throw new Exception("unsupported data!");
-			}
-			this.VertexMode = reader.ReadUInt32();
-			this.LightingMode = reader.ReadUInt32();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiVertexColorProperty"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    /// <exception cref="Exception">unsupported data!</exception>
+    public NiVertexColorProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Flags = reader.ReadUInt16();
+        if (base.Version > eNifVersion.VER_20_0_0_5)
+        {
+            throw new Exception("unsupported data!");
+        }
+        this.VertexMode = reader.ReadUInt32();
+        this.LightingMode = reader.ReadUInt32();
+    }
 }

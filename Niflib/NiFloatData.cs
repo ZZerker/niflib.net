@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiFloatData.
+/// </summary>
+public class NiFloatData : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public KeyGroup<FloatKey> Data;
 
     /// <summary>
-    /// Class NiFloatData.
+    /// Initializes a new instance of the <see cref="NiFloatData" /> class.
     /// </summary>
-    public class NiFloatData : NiObject
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public KeyGroup<FloatKey> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiFloatData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiFloatData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = new KeyGroup<FloatKey>(reader);
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiFloatData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = new KeyGroup<FloatKey>(reader);
+    }
 }

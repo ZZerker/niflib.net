@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiTriBasedGeometry.
+/// </summary>
+public class NiTriBasedGeometry : NiGeometry
+{
     /// <summary>
-    /// Class NiTriBasedGeometry.
+    /// Initializes a new instance of the <see cref="NiTriBasedGeometry"/> class.
     /// </summary>
-    public class NiTriBasedGeometry : NiGeometry
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiTriBasedGeometry"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiTriBasedGeometry(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiTriBasedGeometry(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

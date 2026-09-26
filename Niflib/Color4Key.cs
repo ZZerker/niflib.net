@@ -17,56 +17,55 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class Color4Key.
+/// </summary>
+public class Color4Key : BaseKey
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The time
+    /// </summary>
+    public float Time;
 
     /// <summary>
-    /// Class Color4Key.
+    /// The value
     /// </summary>
-    public class Color4Key : BaseKey
-	{
-        /// <summary>
-        /// The time
-        /// </summary>
-        public float Time;
+    public Color4 Value;
 
-        /// <summary>
-        /// The value
-        /// </summary>
-        public Color4 Value;
+    /// <summary>
+    /// The forward
+    /// </summary>
+    public Color4 Forward;
 
-        /// <summary>
-        /// The forward
-        /// </summary>
-        public Color4 Forward;
+    /// <summary>
+    /// The backward
+    /// </summary>
+    public Color4 Backward;
 
-        /// <summary>
-        /// The backward
-        /// </summary>
-        public Color4 Backward;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Color4Key"/> class.
-        /// </summary>
-        /// <param name="reader">The reader.</param>
-        /// <param name="type">The type.</param>
-        /// <exception cref="Exception">Invalid eKeyType!</exception>
-        public Color4Key(BinaryReader reader, eKeyType type) : base(reader, type)
-		{
-			this.Time = reader.ReadSingle();
-			if (type < eKeyType.LINEAR_KEY || type > eKeyType.TBC_KEY)
-			{
-				throw new Exception("Invalid eKeyType!");
-			}
-			this.Value = reader.ReadColor4();
-			if (type == eKeyType.QUADRATIC_KEY)
-			{
-				this.Forward = reader.ReadColor4();
-				this.Backward = reader.ReadColor4();
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Color4Key"/> class.
+    /// </summary>
+    /// <param name="reader">The reader.</param>
+    /// <param name="type">The type.</param>
+    /// <exception cref="Exception">Invalid eKeyType!</exception>
+    public Color4Key(BinaryReader reader, eKeyType type) : base(reader, type)
+    {
+        this.Time = reader.ReadSingle();
+        if (type < eKeyType.LINEAR_KEY || type > eKeyType.TBC_KEY)
+        {
+            throw new Exception("Invalid eKeyType!");
+        }
+        this.Value = reader.ReadColor4();
+        if (type == eKeyType.QUADRATIC_KEY)
+        {
+            this.Forward = reader.ReadColor4();
+            this.Backward = reader.ReadColor4();
+        }
+    }
 }

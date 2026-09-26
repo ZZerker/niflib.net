@@ -17,33 +17,32 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticleMeshModifier.
+/// </summary>
+public class NiParticleMeshModifier : NiParticleModifier
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The particle meshes
+    /// </summary>
+    public NiRef<NiAVObject>[] ParticleMeshes;
 
     /// <summary>
-    /// Class NiParticleMeshModifier.
+    /// Initializes a new instance of the <see cref="NiParticleMeshModifier" /> class.
     /// </summary>
-    public class NiParticleMeshModifier : NiParticleModifier
-	{
-        /// <summary>
-        /// The particle meshes
-        /// </summary>
-        public NiRef<NiAVObject>[] ParticleMeshes;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleMeshModifier" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticleMeshModifier(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.ParticleMeshes = new NiRef<NiAVObject>[reader.ReadUInt32()];
-			for (int i = 0; i < this.ParticleMeshes.Length; i++)
-			{
-				this.ParticleMeshes[i] = new NiRef<NiAVObject>(reader);
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticleMeshModifier(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.ParticleMeshes = new NiRef<NiAVObject>[reader.ReadUInt32()];
+        for (int i = 0; i < this.ParticleMeshes.Length; i++)
+        {
+            this.ParticleMeshes[i] = new NiRef<NiAVObject>(reader);
+        }
+    }
 }

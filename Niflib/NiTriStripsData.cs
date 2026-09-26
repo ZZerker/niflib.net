@@ -17,59 +17,58 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiTriStripsData.
+/// </summary>
+public class NiTriStripsData : NiTriBasedGeomData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The has points
+    /// </summary>
+    public bool HasPoints;
 
     /// <summary>
-    /// Class NiTriStripsData.
+    /// The points
     /// </summary>
-    public class NiTriStripsData : NiTriBasedGeomData
-	{
-        /// <summary>
-        /// The has points
-        /// </summary>
-        public bool HasPoints;
+    public ushort[][] Points;
 
-        /// <summary>
-        /// The points
-        /// </summary>
-        public ushort[][] Points;
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiTriStripsData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiTriStripsData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        ushort[] array = new ushort[(int)reader.ReadUInt16()];
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = reader.ReadUInt16();
+        }
+        if (base.Version >= eNifVersion.VER_10_0_1_3)
+        {
+            this.HasPoints = reader.ReadBoolean(Version);
+        }
+        else
+        {
+            this.HasPoints = array.Length > 0;
+        }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiTriStripsData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiTriStripsData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			ushort[] array = new ushort[(int)reader.ReadUInt16()];
-			for (int i = 0; i < array.Length; i++)
-			{
-				array[i] = reader.ReadUInt16();
-			}
-			if (base.Version >= eNifVersion.VER_10_0_1_3)
-			{
-				this.HasPoints = reader.ReadBoolean(Version);
-			}
-			else
-			{
-				this.HasPoints = array.Length > 0;
-			}
-			
-			if (base.Version < eNifVersion.VER_10_0_1_3 || this.HasPoints)
-			{
-				this.Points = new ushort[array.Length][];
-				for (int j = 0; j < array.Length; j++)
-				{
-					this.Points[j] = new ushort[(int)array[j]];
-					for (ushort num = 0; num < array[j]; num++)
-					{
-						this.Points[j][(int)num] = reader.ReadUInt16();
-					}
-				}
-			}
-		}
-	}
+        if (base.Version < eNifVersion.VER_10_0_1_3 || this.HasPoints)
+        {
+            this.Points = new ushort[array.Length][];
+            for (int j = 0; j < array.Length; j++)
+            {
+                this.Points[j] = new ushort[(int)array[j]];
+                for (ushort num = 0; num < array[j]; num++)
+                {
+                    this.Points[j][(int)num] = reader.ReadUInt16();
+                }
+            }
+        }
+    }
 }

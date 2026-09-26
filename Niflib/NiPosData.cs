@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiPosData.
+/// </summary>
+public class NiPosData : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public KeyGroup<VecKey> Data;
 
     /// <summary>
-    /// Class NiPosData.
+    /// Initializes a new instance of the <see cref="NiPosData"/> class.
     /// </summary>
-    public class NiPosData : NiObject
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public KeyGroup<VecKey> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiPosData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiPosData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = new KeyGroup<VecKey>(reader);
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiPosData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = new KeyGroup<VecKey>(reader);
+    }
 }

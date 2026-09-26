@@ -17,40 +17,39 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiPalette.
+/// </summary>
+public class NiPalette : NiObject
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The unkown byte
+    /// </summary>
+    public byte UnkownByte;
 
     /// <summary>
-    /// Class NiPalette.
+    /// The palette
     /// </summary>
-    public class NiPalette : NiObject
-	{
-        /// <summary>
-        /// The unkown byte
-        /// </summary>
-        public byte UnkownByte;
+    public Color4[] Palette;
 
-        /// <summary>
-        /// The palette
-        /// </summary>
-        public Color4[] Palette;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiPalette"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiPalette(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.UnkownByte = reader.ReadByte();
-			this.Palette = new Color4[reader.ReadUInt32()];
-			for (int i = 0; i < this.Palette.Length; i++)
-			{
-				this.Palette[i] = reader.ReadColor4Byte();
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiPalette"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiPalette(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.UnkownByte = reader.ReadByte();
+        this.Palette = new Color4[reader.ReadUInt32()];
+        for (int i = 0; i < this.Palette.Length; i++)
+        {
+            this.Palette[i] = reader.ReadColor4Byte();
+        }
+    }
 }

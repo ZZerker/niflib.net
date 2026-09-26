@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eBillboardMode
+/// </summary>
+public enum eBillboardMode : ushort
+{
     /// <summary>
-    /// Enum eBillboardMode
+    /// The alway s_ fac e_ camera
     /// </summary>
-    public enum eBillboardMode : ushort
-	{
-        /// <summary>
-        /// The alway s_ fac e_ camera
-        /// </summary>
-        ALWAYS_FACE_CAMERA,
-        /// <summary>
-        /// The rotat e_ abou t_ up
-        /// </summary>
-        ROTATE_ABOUT_UP,
-        /// <summary>
-        /// The rigi d_ fac e_ camera
-        /// </summary>
-        RIGID_FACE_CAMERA,
-        /// <summary>
-        /// The alway s_ fac e_ center
-        /// </summary>
-        ALWAYS_FACE_CENTER,
-        /// <summary>
-        /// The rigi d_ fac e_ center
-        /// </summary>
-        RIGID_FACE_CENTER,
-        /// <summary>
-        /// The rotat e_ abou t_ u p2
-        /// </summary>
-        ROTATE_ABOUT_UP2 = 9
-	}
+    ALWAYS_FACE_CAMERA,
+    /// <summary>
+    /// The rotat e_ abou t_ up
+    /// </summary>
+    ROTATE_ABOUT_UP,
+    /// <summary>
+    /// The rigi d_ fac e_ camera
+    /// </summary>
+    RIGID_FACE_CAMERA,
+    /// <summary>
+    /// The alway s_ fac e_ center
+    /// </summary>
+    ALWAYS_FACE_CENTER,
+    /// <summary>
+    /// The rigi d_ fac e_ center
+    /// </summary>
+    RIGID_FACE_CENTER,
+    /// <summary>
+    /// The rotat e_ abou t_ u p2
+    /// </summary>
+    ROTATE_ABOUT_UP2 = 9
 }

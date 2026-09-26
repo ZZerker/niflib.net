@@ -17,33 +17,32 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiIntegersExtraData.
+/// </summary>
+public class NiIntegersExtraData : NiExtraData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The extra int data
+    /// </summary>
+    public uint[] ExtraIntData;
 
     /// <summary>
-    /// Class NiIntegersExtraData.
+    /// Initializes a new instance of the <see cref="NiIntegersExtraData"/> class.
     /// </summary>
-    public class NiIntegersExtraData : NiExtraData
-	{
-        /// <summary>
-        /// The extra int data
-        /// </summary>
-        public uint[] ExtraIntData;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiIntegersExtraData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiIntegersExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.ExtraIntData = new uint[reader.ReadUInt32()];
-			for (int i = 0; i < this.ExtraIntData.Length; i++)
-			{
-				this.ExtraIntData[i] = reader.ReadUInt32();
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiIntegersExtraData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.ExtraIntData = new uint[reader.ReadUInt32()];
+        for (int i = 0; i < this.ExtraIntData.Length; i++)
+        {
+            this.ExtraIntData[i] = reader.ReadUInt32();
+        }
+    }
 }

@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticleMeshes.
+/// </summary>
+public class NiParticleMeshes : NiParticles
+{
     /// <summary>
-    /// Class NiParticleMeshes.
+    /// Initializes a new instance of the <see cref="NiParticleMeshes" /> class.
     /// </summary>
-    public class NiParticleMeshes : NiParticles
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleMeshes" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticleMeshes(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticleMeshes(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

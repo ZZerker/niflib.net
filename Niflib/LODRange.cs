@@ -17,49 +17,48 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class LODRange.
+/// </summary>
+public class LODRange
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The near extent
+    /// </summary>
+    public float NearExtent;
 
     /// <summary>
-    /// Class LODRange.
+    /// The far extent
     /// </summary>
-    public class LODRange
-	{
-        /// <summary>
-        /// The near extent
-        /// </summary>
-        public float NearExtent;
+    public float FarExtent;
 
-        /// <summary>
-        /// The far extent
-        /// </summary>
-        public float FarExtent;
+    /// <summary>
+    /// The unkown ints
+    /// </summary>
+    public uint[] UnkownInts;
 
-        /// <summary>
-        /// The unkown ints
-        /// </summary>
-        public uint[] UnkownInts;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LODRange"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public LODRange(NiFile file, BinaryReader reader)
-		{
-			this.NearExtent = reader.ReadSingle();
-			this.FarExtent = reader.ReadSingle();
-			if (file.Version <= eNifVersion.VER_3_1)
-			{
-				this.UnkownInts = new uint[]
-				{
-					reader.ReadUInt32(),
-					reader.ReadUInt32(),
-					reader.ReadUInt32()
-				};
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LODRange"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public LODRange(NiFile file, BinaryReader reader)
+    {
+        this.NearExtent = reader.ReadSingle();
+        this.FarExtent = reader.ReadSingle();
+        if (file.Version <= eNifVersion.VER_3_1)
+        {
+            this.UnkownInts = new uint[]
+            {
+                reader.ReadUInt32(),
+                reader.ReadUInt32(),
+                reader.ReadUInt32()
+            };
+        }
+    }
 }

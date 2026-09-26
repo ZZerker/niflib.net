@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiTriBasedGeomData.
+/// </summary>
+public class NiTriBasedGeomData : NiGeometryData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The number triangles
+    /// </summary>
+    public ushort NumTriangles;
 
     /// <summary>
-    /// Class NiTriBasedGeomData.
+    /// Initializes a new instance of the <see cref="NiTriBasedGeomData"/> class.
     /// </summary>
-    public class NiTriBasedGeomData : NiGeometryData
-	{
-        /// <summary>
-        /// The number triangles
-        /// </summary>
-        public ushort NumTriangles;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiTriBasedGeomData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiTriBasedGeomData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.NumTriangles = reader.ReadUInt16();
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiTriBasedGeomData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.NumTriangles = reader.ReadUInt16();
+    }
 }

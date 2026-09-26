@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiMaterialColorController.
+/// </summary>
+public class NiMaterialColorController : NiPoint3InterpController
+{
     /// <summary>
-    /// Class NiMaterialColorController.
+    /// Initializes a new instance of the <see cref="NiMaterialColorController" /> class.
     /// </summary>
-    public class NiMaterialColorController : NiPoint3InterpController
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiMaterialColorController" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiMaterialColorController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiMaterialColorController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

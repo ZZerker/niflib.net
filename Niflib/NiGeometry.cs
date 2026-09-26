@@ -17,100 +17,99 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiGeometry.
+/// </summary>
+public class NiGeometry : NiAVObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public NiRef<NiGeometryData> Data;
 
     /// <summary>
-    /// Class NiGeometry.
+    /// The skin instance
     /// </summary>
-    public class NiGeometry : NiAVObject
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiGeometryData> Data;
+    public NiRef<NiSkinInstance> SkinInstance;
 
-        /// <summary>
-        /// The skin instance
-        /// </summary>
-        public NiRef<NiSkinInstance> SkinInstance;
+    /// <summary>
+    /// The material names
+    /// </summary>
+    public NiString[] MaterialNames;
 
-        /// <summary>
-        /// The material names
-        /// </summary>
-        public NiString[] MaterialNames;
+    /// <summary>
+    /// The material extra data
+    /// </summary>
+    public int[] MaterialExtraData;
 
-        /// <summary>
-        /// The material extra data
-        /// </summary>
-        public int[] MaterialExtraData;
+    /// <summary>
+    /// The active material
+    /// </summary>
+    public int ActiveMaterial;
 
-        /// <summary>
-        /// The active material
-        /// </summary>
-        public int ActiveMaterial;
+    /// <summary>
+    /// The has shader
+    /// </summary>
+    public bool HasShader;
 
-        /// <summary>
-        /// The has shader
-        /// </summary>
-        public bool HasShader;
+    /// <summary>
+    /// The shader name
+    /// </summary>
+    public string ShaderName;
 
-        /// <summary>
-        /// The shader name
-        /// </summary>
-        public string ShaderName;
+    /// <summary>
+    /// The unkown integer
+    /// </summary>
+    public uint UnkownInteger;
 
-        /// <summary>
-        /// The unkown integer
-        /// </summary>
-        public uint UnkownInteger;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiGeometry"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        /// <exception cref="Exception">unsupported data</exception>
-        public NiGeometry(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = new NiRef<NiGeometryData>(reader);
-			if (base.Version >= eNifVersion.VER_3_3_0_13)
-			{
-				this.SkinInstance = new NiRef<NiSkinInstance>(reader);
-			}
-			if (base.Version >= eNifVersion.VER_20_2_0_7)
-			{
-				this.MaterialNames = new NiString[reader.ReadUInt32()];
-				for (int i = 0; i < this.MaterialNames.Length; i++)
-				{
-					this.MaterialNames[i] = new NiString(file, reader);
-				}
-				this.MaterialExtraData = new int[this.MaterialNames.Length];
-				for (int j = 0; j < this.MaterialNames.Length; j++)
-				{
-					this.MaterialExtraData[j] = reader.ReadInt32();
-				}
-				this.ActiveMaterial = reader.ReadInt32();
-			}
-			if (base.Version >= eNifVersion.VER_10_0_1_0 && base.Version <= eNifVersion.VER_20_1_0_3)
-			{
-				this.HasShader = reader.ReadBoolean(Version);
-				if (this.HasShader)
-				{
-					this.ShaderName = new NiString(file, reader).Value;
-					this.UnkownInteger = reader.ReadUInt32();
-				}
-			}
-			if (base.Version == eNifVersion.VER_10_4_0_1)
-			{
-				reader.ReadUInt32();
-			}
-			if (base.Version >= eNifVersion.VER_20_2_0_7)
-			{
-				throw new Exception("unsupported data");
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiGeometry"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    /// <exception cref="Exception">unsupported data</exception>
+    public NiGeometry(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = new NiRef<NiGeometryData>(reader);
+        if (base.Version >= eNifVersion.VER_3_3_0_13)
+        {
+            this.SkinInstance = new NiRef<NiSkinInstance>(reader);
+        }
+        if (base.Version >= eNifVersion.VER_20_2_0_7)
+        {
+            this.MaterialNames = new NiString[reader.ReadUInt32()];
+            for (int i = 0; i < this.MaterialNames.Length; i++)
+            {
+                this.MaterialNames[i] = new NiString(file, reader);
+            }
+            this.MaterialExtraData = new int[this.MaterialNames.Length];
+            for (int j = 0; j < this.MaterialNames.Length; j++)
+            {
+                this.MaterialExtraData[j] = reader.ReadInt32();
+            }
+            this.ActiveMaterial = reader.ReadInt32();
+        }
+        if (base.Version >= eNifVersion.VER_10_0_1_0 && base.Version <= eNifVersion.VER_20_1_0_3)
+        {
+            this.HasShader = reader.ReadBoolean(Version);
+            if (this.HasShader)
+            {
+                this.ShaderName = new NiString(file, reader).Value;
+                this.UnkownInteger = reader.ReadUInt32();
+            }
+        }
+        if (base.Version == eNifVersion.VER_10_4_0_1)
+        {
+            reader.ReadUInt32();
+        }
+        if (base.Version >= eNifVersion.VER_20_2_0_7)
+        {
+            throw new Exception("unsupported data");
+        }
+    }
 }

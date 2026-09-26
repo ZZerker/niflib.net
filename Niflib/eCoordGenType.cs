@@ -17,34 +17,33 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eCoordGenType
+/// </summary>
+public enum eCoordGenType : uint
+{
     /// <summary>
-    /// Enum eCoordGenType
+    /// The c g_ worl d_ parallel
     /// </summary>
-    public enum eCoordGenType : uint
-	{
-        /// <summary>
-        /// The c g_ worl d_ parallel
-        /// </summary>
-        CG_WORLD_PARALLEL,
-        /// <summary>
-        /// The c g_ worl d_ perspective
-        /// </summary>
-        CG_WORLD_PERSPECTIVE,
-        /// <summary>
-        /// The c g_ spher e_ map
-        /// </summary>
-        CG_SPHERE_MAP,
-        /// <summary>
-        /// The c g_ specula r_ cub e_ map
-        /// </summary>
-        CG_SPECULAR_CUBE_MAP,
-        /// <summary>
-        /// The c g_ diffus e_ cub e_ map
-        /// </summary>
-        CG_DIFFUSE_CUBE_MAP
-    }
+    CG_WORLD_PARALLEL,
+    /// <summary>
+    /// The c g_ worl d_ perspective
+    /// </summary>
+    CG_WORLD_PERSPECTIVE,
+    /// <summary>
+    /// The c g_ spher e_ map
+    /// </summary>
+    CG_SPHERE_MAP,
+    /// <summary>
+    /// The c g_ specula r_ cub e_ map
+    /// </summary>
+    CG_SPECULAR_CUBE_MAP,
+    /// <summary>
+    /// The c g_ diffus e_ cub e_ map
+    /// </summary>
+    CG_DIFFUSE_CUBE_MAP
 }

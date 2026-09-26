@@ -17,41 +17,40 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiPoint3InterpController.
+/// </summary>
+public class NiPoint3InterpController : NiSingleInterpController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The target color
+    /// </summary>
+    public eTargetColor TargetColor;
 
     /// <summary>
-    /// Class NiPoint3InterpController.
+    /// The data
     /// </summary>
-    public class NiPoint3InterpController : NiSingleInterpController
-	{
-        /// <summary>
-        /// The target color
-        /// </summary>
-        public eTargetColor TargetColor;
+    public NiRef<NiPosData> Data;
 
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiPosData> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiPoint3InterpController" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiPoint3InterpController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (base.Version >= eNifVersion.VER_10_1_0_0)
-			{
-				this.TargetColor = (eTargetColor)reader.ReadUInt16();
-			}
-			if (base.Version <= eNifVersion.VER_10_1_0_0)
-			{
-				this.Data = new NiRef<NiPosData>(reader);
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiPoint3InterpController" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiPoint3InterpController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (base.Version >= eNifVersion.VER_10_1_0_0)
+        {
+            this.TargetColor = (eTargetColor)reader.ReadUInt16();
+        }
+        if (base.Version <= eNifVersion.VER_10_1_0_0)
+        {
+            this.Data = new NiRef<NiPosData>(reader);
+        }
+    }
 }

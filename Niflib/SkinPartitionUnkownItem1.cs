@@ -17,59 +17,58 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class SkinPartitionUnkownItem1.
+/// </summary>
+public class SkinPartitionUnkownItem1
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public uint Flags;
 
     /// <summary>
-    /// Class SkinPartitionUnkownItem1.
+    /// The unkown1
     /// </summary>
-    public class SkinPartitionUnkownItem1
-	{
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public uint Flags;
+    public float Unkown1;
 
-        /// <summary>
-        /// The unkown1
-        /// </summary>
-        public float Unkown1;
+    /// <summary>
+    /// The unkown2
+    /// </summary>
+    public float Unkown2;
 
-        /// <summary>
-        /// The unkown2
-        /// </summary>
-        public float Unkown2;
+    /// <summary>
+    /// The unkown3
+    /// </summary>
+    public float Unkown3;
 
-        /// <summary>
-        /// The unkown3
-        /// </summary>
-        public float Unkown3;
+    /// <summary>
+    /// The unkown4
+    /// </summary>
+    public float Unkown4;
 
-        /// <summary>
-        /// The unkown4
-        /// </summary>
-        public float Unkown4;
+    /// <summary>
+    /// The unkown5
+    /// </summary>
+    public float Unkown5;
 
-        /// <summary>
-        /// The unkown5
-        /// </summary>
-        public float Unkown5;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SkinPartitionUnkownItem1"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public SkinPartitionUnkownItem1(NiFile file, BinaryReader reader)
-		{
-			this.Flags = reader.ReadUInt32();
-			this.Unkown1 = reader.ReadSingle();
-			this.Unkown2 = reader.ReadSingle();
-			this.Unkown3 = reader.ReadSingle();
-			this.Unkown4 = reader.ReadSingle();
-			this.Unkown5 = reader.ReadSingle();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SkinPartitionUnkownItem1"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public SkinPartitionUnkownItem1(NiFile file, BinaryReader reader)
+    {
+        this.Flags = reader.ReadUInt32();
+        this.Unkown1 = reader.ReadSingle();
+        this.Unkown2 = reader.ReadSingle();
+        this.Unkown3 = reader.ReadSingle();
+        this.Unkown4 = reader.ReadSingle();
+        this.Unkown5 = reader.ReadSingle();
+    }
 }

@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiColorData.
+/// </summary>
+public class NiColorData : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public KeyGroup<Color4Key> Data;
 
     /// <summary>
-    /// Class NiColorData.
+    /// Initializes a new instance of the <see cref="NiColorData" /> class.
     /// </summary>
-    public class NiColorData : NiObject
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public KeyGroup<Color4Key> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiColorData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiColorData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = new KeyGroup<Color4Key>(reader);
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiColorData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = new KeyGroup<Color4Key>(reader);
+    }
 }

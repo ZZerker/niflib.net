@@ -17,26 +17,25 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eSymmetryType
+/// </summary>
+public enum eSymmetryType : uint
+{
     /// <summary>
-    /// Enum eSymmetryType
+    /// The spherica l_ symmetry
     /// </summary>
-    public enum eSymmetryType : uint
-	{
-        /// <summary>
-        /// The spherica l_ symmetry
-        /// </summary>
-        SPHERICAL_SYMMETRY,
-        /// <summary>
-        /// The cylindrica l_ symmetry
-        /// </summary>
-        CYLINDRICAL_SYMMETRY,
-        /// <summary>
-        /// The plana r_ symmetry
-        /// </summary>
-        PLANAR_SYMMETRY
-    }
+    SPHERICAL_SYMMETRY,
+    /// <summary>
+    /// The cylindrica l_ symmetry
+    /// </summary>
+    CYLINDRICAL_SYMMETRY,
+    /// <summary>
+    /// The plana r_ symmetry
+    /// </summary>
+    PLANAR_SYMMETRY
 }

@@ -17,42 +17,41 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eChannelType
+/// </summary>
+public enum eChannelType : uint
+{
     /// <summary>
-    /// Enum eChannelType
+    /// The CHN l_ red
     /// </summary>
-    public enum eChannelType : uint
-	{
-        /// <summary>
-        /// The CHN l_ red
-        /// </summary>
-        CHNL_RED,
-        /// <summary>
-        /// The CHN l_ green
-        /// </summary>
-        CHNL_GREEN,
-        /// <summary>
-        /// The CHN l_ blue
-        /// </summary>
-        CHNL_BLUE,
-        /// <summary>
-        /// The CHN l_ alpha
-        /// </summary>
-        CHNL_ALPHA,
-        /// <summary>
-        /// The CHN l_ compressed
-        /// </summary>
-        CHNL_COMPRESSED,
-        /// <summary>
-        /// The CHN l_ index
-        /// </summary>
-        CHNL_INDEX = 16u,
-        /// <summary>
-        /// The CHN l_ empty
-        /// </summary>
-        CHNL_EMPTY = 19u
-	}
+    CHNL_RED,
+    /// <summary>
+    /// The CHN l_ green
+    /// </summary>
+    CHNL_GREEN,
+    /// <summary>
+    /// The CHN l_ blue
+    /// </summary>
+    CHNL_BLUE,
+    /// <summary>
+    /// The CHN l_ alpha
+    /// </summary>
+    CHNL_ALPHA,
+    /// <summary>
+    /// The CHN l_ compressed
+    /// </summary>
+    CHNL_COMPRESSED,
+    /// <summary>
+    /// The CHN l_ index
+    /// </summary>
+    CHNL_INDEX = 16u,
+    /// <summary>
+    /// The CHN l_ empty
+    /// </summary>
+    CHNL_EMPTY = 19u
 }

@@ -17,34 +17,33 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eTexTransform
+/// </summary>
+public enum eTexTransform : uint
+{
     /// <summary>
-    /// Enum eTexTransform
+    /// The t t_ translat e_ u
     /// </summary>
-    public enum eTexTransform : uint
-	{
-        /// <summary>
-        /// The t t_ translat e_ u
-        /// </summary>
-        TT_TRANSLATE_U,
-        /// <summary>
-        /// The t t_ translat e_ v
-        /// </summary>
-        TT_TRANSLATE_V,
-        /// <summary>
-        /// The t t_ rotate
-        /// </summary>
-        TT_ROTATE,
-        /// <summary>
-        /// The t t_ scal e_ u
-        /// </summary>
-        TT_SCALE_U,
-        /// <summary>
-        /// The t t_ scal e_ v
-        /// </summary>
-        TT_SCALE_V
-    }
+    TT_TRANSLATE_U,
+    /// <summary>
+    /// The t t_ translat e_ v
+    /// </summary>
+    TT_TRANSLATE_V,
+    /// <summary>
+    /// The t t_ rotate
+    /// </summary>
+    TT_ROTATE,
+    /// <summary>
+    /// The t t_ scal e_ u
+    /// </summary>
+    TT_SCALE_U,
+    /// <summary>
+    /// The t t_ scal e_ v
+    /// </summary>
+    TT_SCALE_V
 }

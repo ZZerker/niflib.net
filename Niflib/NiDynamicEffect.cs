@@ -17,46 +17,45 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiDynamicEffect.
+/// </summary>
+public class NiDynamicEffect : NiAVObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The switch state
+    /// </summary>
+    public bool SwitchState;
 
     /// <summary>
-    /// Class NiDynamicEffect.
+    /// The affected nodes
     /// </summary>
-    public class NiDynamicEffect : NiAVObject
-	{
-        /// <summary>
-        /// The switch state
-        /// </summary>
-        public bool SwitchState;
+    public NiRef<NiAVObject>[] AffectedNodes;
 
-        /// <summary>
-        /// The affected nodes
-        /// </summary>
-        public NiRef<NiAVObject>[] AffectedNodes;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiDynamicEffect"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiDynamicEffect(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.SwitchState = true;
-			if (base.Version >= eNifVersion.VER_10_1_0_106)
-			{
-				this.SwitchState = reader.ReadBoolean(Version);
-			}
-			if (base.Version <= eNifVersion.VER_4_0_0_2 || base.Version >= eNifVersion.VER_10_0_1_0)
-			{
-				this.AffectedNodes = new NiRef<NiAVObject>[reader.ReadUInt32()];
-				for (int i = 0; i < this.AffectedNodes.Length; i++)
-				{
-					this.AffectedNodes[i] = new NiRef<NiAVObject>(reader);
-				}
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiDynamicEffect"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiDynamicEffect(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.SwitchState = true;
+        if (base.Version >= eNifVersion.VER_10_1_0_106)
+        {
+            this.SwitchState = reader.ReadBoolean(Version);
+        }
+        if (base.Version <= eNifVersion.VER_4_0_0_2 || base.Version >= eNifVersion.VER_10_0_1_0)
+        {
+            this.AffectedNodes = new NiRef<NiAVObject>[reader.ReadUInt32()];
+            for (int i = 0; i < this.AffectedNodes.Length; i++)
+            {
+                this.AffectedNodes[i] = new NiRef<NiAVObject>(reader);
+            }
+        }
+    }
 }

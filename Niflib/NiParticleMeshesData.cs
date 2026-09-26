@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticleMeshesData.
+/// </summary>
+public class NiParticleMeshesData : NiRotatingParticlesData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The unkown link
+    /// </summary>
+    public NiRef<NiAVObject> UnkownLink;
 
     /// <summary>
-    /// Class NiParticleMeshesData.
+    /// Initializes a new instance of the <see cref="NiParticleMeshesData" /> class.
     /// </summary>
-    public class NiParticleMeshesData : NiRotatingParticlesData
-	{
-        /// <summary>
-        /// The unkown link
-        /// </summary>
-        public NiRef<NiAVObject> UnkownLink;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleMeshesData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticleMeshesData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.UnkownLink = new NiRef<NiAVObject>(reader);
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticleMeshesData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.UnkownLink = new NiRef<NiAVObject>(reader);
+    }
 }

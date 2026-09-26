@@ -17,19 +17,18 @@
  *
  */
 
-namespace Niflib
-{
-    public struct Color3
-    {
-        public float Red;
-        public float Green;
-        public float Blue;
+namespace Niflib;
 
-        public Color3(float red, float green, float blue)
-        {
-            this.Red = red;
-            this.Green = green;
-            this.Blue = blue;
-        }
+public struct Color3
+{
+    public float Red;
+    public float Green;
+    public float Blue;
+
+    public Color3(float red, float green, float blue)
+    {
+        this.Red = red;
+        this.Green = green;
+        this.Blue = blue;
     }
 }

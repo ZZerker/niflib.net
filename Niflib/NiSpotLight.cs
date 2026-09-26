@@ -17,44 +17,43 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiSpotLight.
+/// </summary>
+public class NiSpotLight : NiPointLight
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The cutoff angle
+    /// </summary>
+    public float CutoffAngle;
 
     /// <summary>
-    /// Class NiSpotLight.
+    /// The unkown float
     /// </summary>
-    public class NiSpotLight : NiPointLight
-	{
-        /// <summary>
-        /// The cutoff angle
-        /// </summary>
-        public float CutoffAngle;
+    public float UnkownFloat;
 
-        /// <summary>
-        /// The unkown float
-        /// </summary>
-        public float UnkownFloat;
+    /// <summary>
+    /// The exponent
+    /// </summary>
+    public float Exponent;
 
-        /// <summary>
-        /// The exponent
-        /// </summary>
-        public float Exponent;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiSpotLight"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiSpotLight(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.CutoffAngle = reader.ReadSingle();
-			if (base.Version >= eNifVersion.VER_20_2_0_7)
-			{
-				this.UnkownFloat = reader.ReadSingle();
-			}
-			this.Exponent = reader.ReadSingle();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiSpotLight"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiSpotLight(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.CutoffAngle = reader.ReadSingle();
+        if (base.Version >= eNifVersion.VER_20_2_0_7)
+        {
+            this.UnkownFloat = reader.ReadSingle();
+        }
+        this.Exponent = reader.ReadSingle();
+    }
 }

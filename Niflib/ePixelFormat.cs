@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum ePixelFormat
+/// </summary>
+public enum ePixelFormat : uint
+{
     /// <summary>
-    /// Enum ePixelFormat
+    /// The p x_ fm t_ rg b8
     /// </summary>
-    public enum ePixelFormat : uint
-	{
-        /// <summary>
-        /// The p x_ fm t_ rg b8
-        /// </summary>
-        PX_FMT_RGB8,
-        /// <summary>
-        /// The p x_ fm t_ RGB a8
-        /// </summary>
-        PX_FMT_RGBA8,
-        /// <summary>
-        /// The p x_ fm t_ pa l8
-        /// </summary>
-        PX_FMT_PAL8,
-        /// <summary>
-        /// The p x_ fm t_ dx t1
-        /// </summary>
-        PX_FMT_DXT1 = 4u,
-        /// <summary>
-        /// The p x_ fm t_ dx t5
-        /// </summary>
-        PX_FMT_DXT5,
-        /// <summary>
-        /// The p x_ fm t_ dx T5_ alt
-        /// </summary>
-        PX_FMT_DXT5_ALT
-    }
+    PX_FMT_RGB8,
+    /// <summary>
+    /// The p x_ fm t_ RGB a8
+    /// </summary>
+    PX_FMT_RGBA8,
+    /// <summary>
+    /// The p x_ fm t_ pa l8
+    /// </summary>
+    PX_FMT_PAL8,
+    /// <summary>
+    /// The p x_ fm t_ dx t1
+    /// </summary>
+    PX_FMT_DXT1 = 4u,
+    /// <summary>
+    /// The p x_ fm t_ dx t5
+    /// </summary>
+    PX_FMT_DXT5,
+    /// <summary>
+    /// The p x_ fm t_ dx T5_ alt
+    /// </summary>
+    PX_FMT_DXT5_ALT
 }

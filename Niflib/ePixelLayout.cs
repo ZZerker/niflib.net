@@ -17,42 +17,41 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum ePixelLayout
+/// </summary>
+public enum ePixelLayout : uint
+{
     /// <summary>
-    /// Enum ePixelLayout
+    /// The pi x_ la y_ palettised
     /// </summary>
-    public enum ePixelLayout : uint
-	{
-        /// <summary>
-        /// The pi x_ la y_ palettised
-        /// </summary>
-        PIX_LAY_PALETTISED,
-        /// <summary>
-        /// The pi x_ la y_ hig h_ colo R_16
-        /// </summary>
-        PIX_LAY_HIGH_COLOR_16,
-        /// <summary>
-        /// The pi x_ la y_ tru e_ colo R_32
-        /// </summary>
-        PIX_LAY_TRUE_COLOR_32,
-        /// <summary>
-        /// The pi x_ la y_ compressed
-        /// </summary>
-        PIX_LAY_COMPRESSED,
-        /// <summary>
-        /// The pi x_ la y_ bumpmap
-        /// </summary>
-        PIX_LAY_BUMPMAP,
-        /// <summary>
-        /// The pi x_ la y_ palettise D_4
-        /// </summary>
-        PIX_LAY_PALETTISED_4,
-        /// <summary>
-        /// The pi x_ la y_ default
-        /// </summary>
-        PIX_LAY_DEFAULT
-    }
+    PIX_LAY_PALETTISED,
+    /// <summary>
+    /// The pi x_ la y_ hig h_ colo R_16
+    /// </summary>
+    PIX_LAY_HIGH_COLOR_16,
+    /// <summary>
+    /// The pi x_ la y_ tru e_ colo R_32
+    /// </summary>
+    PIX_LAY_TRUE_COLOR_32,
+    /// <summary>
+    /// The pi x_ la y_ compressed
+    /// </summary>
+    PIX_LAY_COMPRESSED,
+    /// <summary>
+    /// The pi x_ la y_ bumpmap
+    /// </summary>
+    PIX_LAY_BUMPMAP,
+    /// <summary>
+    /// The pi x_ la y_ palettise D_4
+    /// </summary>
+    PIX_LAY_PALETTISED_4,
+    /// <summary>
+    /// The pi x_ la y_ default
+    /// </summary>
+    PIX_LAY_DEFAULT
 }

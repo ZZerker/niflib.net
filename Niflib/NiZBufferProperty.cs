@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiZBufferProperty.
+/// </summary>
+public class NiZBufferProperty : NiProperty
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public ushort Flags;
 
     /// <summary>
-    /// Class NiZBufferProperty.
+    /// The z compare mode
     /// </summary>
-    public class NiZBufferProperty : NiProperty
-	{
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public ushort Flags;
+    public uint ZCompareMode;
 
-        /// <summary>
-        /// The z compare mode
-        /// </summary>
-        public uint ZCompareMode;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiZBufferProperty"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiZBufferProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Flags = reader.ReadUInt16();
-			if (base.Version >= eNifVersion.VER_4_1_0_12 && base.Version <= eNifVersion.VER_20_0_0_5)
-			{
-				this.ZCompareMode = reader.ReadUInt32();
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiZBufferProperty"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiZBufferProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Flags = reader.ReadUInt16();
+        if (base.Version >= eNifVersion.VER_4_1_0_12 && base.Version <= eNifVersion.VER_20_0_0_5)
+        {
+            this.ZCompareMode = reader.ReadUInt32();
+        }
+    }
 }

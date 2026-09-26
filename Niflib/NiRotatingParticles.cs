@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiRotatingParticles.
+/// </summary>
+public class NiRotatingParticles : NiParticles
+{
     /// <summary>
-    /// Class NiRotatingParticles.
+    /// Initializes a new instance of the <see cref="NiRotatingParticles"/> class.
     /// </summary>
-    public class NiRotatingParticles : NiParticles
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiRotatingParticles"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiRotatingParticles(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiRotatingParticles(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

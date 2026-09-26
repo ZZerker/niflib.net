@@ -17,35 +17,34 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticleGrowFade.
+/// </summary>
+public class NiParticleGrowFade : NiParticleModifier
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The grow
+    /// </summary>
+    public float Grow;
 
     /// <summary>
-    /// Class NiParticleGrowFade.
+    /// The fade
     /// </summary>
-    public class NiParticleGrowFade : NiParticleModifier
-	{
-        /// <summary>
-        /// The grow
-        /// </summary>
-        public float Grow;
+    public float Fade;
 
-        /// <summary>
-        /// The fade
-        /// </summary>
-        public float Fade;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleGrowFade" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticleGrowFade(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Grow = reader.ReadSingle();
-			this.Fade = reader.ReadSingle();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiParticleGrowFade" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticleGrowFade(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Grow = reader.ReadSingle();
+        this.Fade = reader.ReadSingle();
+    }
 }

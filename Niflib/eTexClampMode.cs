@@ -17,30 +17,29 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eTexClampMode
+/// </summary>
+public enum eTexClampMode : uint
+{
     /// <summary>
-    /// Enum eTexClampMode
+    /// The clam p_ s_ clam p_ t
     /// </summary>
-    public enum eTexClampMode : uint
-	{
-        /// <summary>
-        /// The clam p_ s_ clam p_ t
-        /// </summary>
-        CLAMP_S_CLAMP_T,
-        /// <summary>
-        /// The clam p_ s_ wra p_ t
-        /// </summary>
-        CLAMP_S_WRAP_T,
-        /// <summary>
-        /// The wra p_ s_ clam p_ t
-        /// </summary>
-        WRAP_S_CLAMP_T,
-        /// <summary>
-        /// The wra p_ s_ wra p_ t
-        /// </summary>
-        WRAP_S_WRAP_T
-    }
+    CLAMP_S_CLAMP_T,
+    /// <summary>
+    /// The clam p_ s_ wra p_ t
+    /// </summary>
+    CLAMP_S_WRAP_T,
+    /// <summary>
+    /// The wra p_ s_ clam p_ t
+    /// </summary>
+    WRAP_S_CLAMP_T,
+    /// <summary>
+    /// The wra p_ s_ wra p_ t
+    /// </summary>
+    WRAP_S_WRAP_T
 }

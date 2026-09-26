@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticleModifier.
+/// </summary>
+public class NiParticleModifier : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The next
+    /// </summary>
+    public NiRef<NiParticleModifier> Next;
 
     /// <summary>
-    /// Class NiParticleModifier.
+    /// The controller
     /// </summary>
-    public class NiParticleModifier : NiObject
-	{
-        /// <summary>
-        /// The next
-        /// </summary>
-        public NiRef<NiParticleModifier> Next;
+    public NiRef<NiParticleSystemController> Controller;
 
-        /// <summary>
-        /// The controller
-        /// </summary>
-        public NiRef<NiParticleSystemController> Controller;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleModifier"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticleModifier(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Next = new NiRef<NiParticleModifier>(reader);
-			if (this.File.Header.Version >= eNifVersion.VER_4_0_0_2)
-			{
-				this.Controller = new NiRef<NiParticleSystemController>(reader);
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiParticleModifier"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticleModifier(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Next = new NiRef<NiParticleModifier>(reader);
+        if (this.File.Header.Version >= eNifVersion.VER_4_0_0_2)
+        {
+            this.Controller = new NiRef<NiParticleSystemController>(reader);
+        }
+    }
 }

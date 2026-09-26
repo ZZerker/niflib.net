@@ -17,45 +17,44 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiRotatingParticlesData.
+/// </summary>
+public class NiRotatingParticlesData : NiParticlesData
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The has rotations2
+    /// </summary>
+    public bool HasRotations2;
 
     /// <summary>
-    /// Class NiRotatingParticlesData.
+    /// The rotations2
     /// </summary>
-    public class NiRotatingParticlesData : NiParticlesData
-	{
-        /// <summary>
-        /// The has rotations2
-        /// </summary>
-        public bool HasRotations2;
+    public Vector4[] Rotations2;
 
-        /// <summary>
-        /// The rotations2
-        /// </summary>
-        public Vector4[] Rotations2;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiRotatingParticlesData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiRotatingParticlesData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (base.Version <= eNifVersion.VER_4_2_2_0)
-			{
-				this.HasRotations2 = reader.ReadBoolean(Version);
-				this.Rotations2 = new Vector4[this.NumVertices];
-				int num = 0;
-				while ((long)num < (long)((ulong)this.NumVertices))
-				{
-					this.Rotations2[num] = reader.ReadVector4();
-					num++;
-				}
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiRotatingParticlesData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiRotatingParticlesData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (base.Version <= eNifVersion.VER_4_2_2_0)
+        {
+            this.HasRotations2 = reader.ReadBoolean(Version);
+            this.Rotations2 = new Vector4[this.NumVertices];
+            int num = 0;
+            while ((long)num < (long)((ulong)this.NumVertices))
+            {
+                this.Rotations2[num] = reader.ReadVector4();
+                num++;
+            }
+        }
+    }
 }

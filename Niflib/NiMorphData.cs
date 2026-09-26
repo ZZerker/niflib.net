@@ -17,53 +17,52 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiMorphData.
+/// </summary>
+public class NiMorphData : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The number morphs
+    /// </summary>
+    public uint NumMorphs;
 
     /// <summary>
-    /// Class NiMorphData.
+    /// The number vertices
     /// </summary>
-    public class NiMorphData : NiObject
-	{
-        /// <summary>
-        /// The number morphs
-        /// </summary>
-        public uint NumMorphs;
+    public uint NumVertices;
 
-        /// <summary>
-        /// The number vertices
-        /// </summary>
-        public uint NumVertices;
+    /// <summary>
+    /// The relative targets
+    /// </summary>
+    public byte RelativeTargets;
 
-        /// <summary>
-        /// The relative targets
-        /// </summary>
-        public byte RelativeTargets;
+    /// <summary>
+    /// The morphs
+    /// </summary>
+    public Morph[] Morphs;
 
-        /// <summary>
-        /// The morphs
-        /// </summary>
-        public Morph[] Morphs;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiMorphData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiMorphData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.NumMorphs = reader.ReadUInt32();
-			this.NumVertices = reader.ReadUInt32();
-			this.RelativeTargets = reader.ReadByte();
-			this.Morphs = new Morph[this.NumMorphs];
-			int num = 0;
-			while ((long)num < (long)((ulong)this.NumMorphs))
-			{
-				this.Morphs[num] = new Morph(file, reader, this.NumVertices);
-				num++;
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiMorphData" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiMorphData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.NumMorphs = reader.ReadUInt32();
+        this.NumVertices = reader.ReadUInt32();
+        this.RelativeTargets = reader.ReadByte();
+        this.Morphs = new Morph[this.NumMorphs];
+        int num = 0;
+        while ((long)num < (long)((ulong)this.NumMorphs))
+        {
+            this.Morphs[num] = new Morph(file, reader, this.NumVertices);
+            num++;
+        }
+    }
 }

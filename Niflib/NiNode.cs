@@ -17,43 +17,42 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiNode.
+/// </summary>
+public class NiNode : NiAVObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The children
+    /// </summary>
+    public NiRef<NiAVObject>[] Children;
 
     /// <summary>
-    /// Class NiNode.
+    /// The effects
     /// </summary>
-    public class NiNode : NiAVObject
-	{
-        /// <summary>
-        /// The children
-        /// </summary>
-        public NiRef<NiAVObject>[] Children;
+    public NiRef<NiDynamicEffect>[] Effects;
 
-        /// <summary>
-        /// The effects
-        /// </summary>
-        public NiRef<NiDynamicEffect>[] Effects;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiNode"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiNode(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Children = new NiRef<NiAVObject>[reader.ReadUInt32()];
-			for (int i = 0; i < this.Children.Length; i++)
-			{
-				this.Children[i] = new NiRef<NiAVObject>(reader.ReadUInt32());
-			}
-			this.Effects = new NiRef<NiDynamicEffect>[reader.ReadUInt32()];
-			for (int j = 0; j < this.Effects.Length; j++)
-			{
-				this.Effects[j] = new NiRef<NiDynamicEffect>(reader.ReadUInt32());
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiNode"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiNode(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Children = new NiRef<NiAVObject>[reader.ReadUInt32()];
+        for (int i = 0; i < this.Children.Length; i++)
+        {
+            this.Children[i] = new NiRef<NiAVObject>(reader.ReadUInt32());
+        }
+        this.Effects = new NiRef<NiDynamicEffect>[reader.ReadUInt32()];
+        for (int j = 0; j < this.Effects.Length; j++)
+        {
+            this.Effects[j] = new NiRef<NiDynamicEffect>(reader.ReadUInt32());
+        }
+    }
 }

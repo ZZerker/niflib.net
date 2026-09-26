@@ -17,32 +17,31 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiVisController.
+/// </summary>
+public class NiVisController : NiBoolInterpController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public NiRef<NiVisData> Data;
 
     /// <summary>
-    /// Class NiVisController.
+    /// Initializes a new instance of the <see cref="NiVisController"/> class.
     /// </summary>
-    public class NiVisController : NiBoolInterpController
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiVisData> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiVisController"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiVisController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (base.Version <= eNifVersion.VER_10_1_0_0)
-			{
-				this.Data = new NiRef<NiVisData>(reader);
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiVisController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (base.Version <= eNifVersion.VER_10_1_0_0)
+        {
+            this.Data = new NiRef<NiVisData>(reader);
+        }
+    }
 }

@@ -17,26 +17,25 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eMipMapFormat
+/// </summary>
+public enum eMipMapFormat : uint
+{
     /// <summary>
-    /// Enum eMipMapFormat
+    /// The mi p_ fm t_ no
     /// </summary>
-    public enum eMipMapFormat : uint
-	{
-        /// <summary>
-        /// The mi p_ fm t_ no
-        /// </summary>
-        MIP_FMT_NO,
-        /// <summary>
-        /// The mi p_ fm t_ yes
-        /// </summary>
-        MIP_FMT_YES,
-        /// <summary>
-        /// The mi p_ fm t_ default
-        /// </summary>
-        MIP_FMT_DEFAULT
-    }
+    MIP_FMT_NO,
+    /// <summary>
+    /// The mi p_ fm t_ yes
+    /// </summary>
+    MIP_FMT_YES,
+    /// <summary>
+    /// The mi p_ fm t_ default
+    /// </summary>
+    MIP_FMT_DEFAULT
 }

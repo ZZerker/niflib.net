@@ -17,46 +17,45 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eStencilCompareMode
+/// </summary>
+public enum eStencilCompareMode : uint
+{
     /// <summary>
-    /// Enum eStencilCompareMode
+    /// The tes t_ never
     /// </summary>
-    public enum eStencilCompareMode : uint
-	{
-        /// <summary>
-        /// The tes t_ never
-        /// </summary>
-        TEST_NEVER,
-        /// <summary>
-        /// The tes t_ less
-        /// </summary>
-        TEST_LESS,
-        /// <summary>
-        /// The tes t_ equal
-        /// </summary>
-        TEST_EQUAL,
-        /// <summary>
-        /// The tes t_ les s_ equal
-        /// </summary>
-        TEST_LESS_EQUAL,
-        /// <summary>
-        /// The tes t_ greater
-        /// </summary>
-        TEST_GREATER,
-        /// <summary>
-        /// The tes t_ no t_ equal
-        /// </summary>
-        TEST_NOT_EQUAL,
-        /// <summary>
-        /// The tes t_ greate r_ equal
-        /// </summary>
-        TEST_GREATER_EQUAL,
-        /// <summary>
-        /// The tes t_ always
-        /// </summary>
-        TEST_ALWAYS
-    }
+    TEST_NEVER,
+    /// <summary>
+    /// The tes t_ less
+    /// </summary>
+    TEST_LESS,
+    /// <summary>
+    /// The tes t_ equal
+    /// </summary>
+    TEST_EQUAL,
+    /// <summary>
+    /// The tes t_ les s_ equal
+    /// </summary>
+    TEST_LESS_EQUAL,
+    /// <summary>
+    /// The tes t_ greater
+    /// </summary>
+    TEST_GREATER,
+    /// <summary>
+    /// The tes t_ no t_ equal
+    /// </summary>
+    TEST_NOT_EQUAL,
+    /// <summary>
+    /// The tes t_ greate r_ equal
+    /// </summary>
+    TEST_GREATER_EQUAL,
+    /// <summary>
+    /// The tes t_ always
+    /// </summary>
+    TEST_ALWAYS
 }

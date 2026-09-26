@@ -17,47 +17,46 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiUVData.
+/// </summary>
+public class NiUVData : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The u translation
+    /// </summary>
+    public KeyGroup<FloatKey> UTranslation;
 
     /// <summary>
-    /// Class NiUVData.
+    /// The v translation
     /// </summary>
-    public class NiUVData : NiObject
-	{
-        /// <summary>
-        /// The u translation
-        /// </summary>
-        public KeyGroup<FloatKey> UTranslation;
+    public KeyGroup<FloatKey> VTranslation;
 
-        /// <summary>
-        /// The v translation
-        /// </summary>
-        public KeyGroup<FloatKey> VTranslation;
+    /// <summary>
+    /// The u scaling and tiling
+    /// </summary>
+    public KeyGroup<FloatKey> UScalingAndTiling;
 
-        /// <summary>
-        /// The u scaling and tiling
-        /// </summary>
-        public KeyGroup<FloatKey> UScalingAndTiling;
+    /// <summary>
+    /// The v scaling and tiling
+    /// </summary>
+    public KeyGroup<FloatKey> VScalingAndTiling;
 
-        /// <summary>
-        /// The v scaling and tiling
-        /// </summary>
-        public KeyGroup<FloatKey> VScalingAndTiling;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiUVData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiUVData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.UTranslation = new KeyGroup<FloatKey>(reader);
-			this.VTranslation = new KeyGroup<FloatKey>(reader);
-			this.UScalingAndTiling = new KeyGroup<FloatKey>(reader);
-			this.VScalingAndTiling = new KeyGroup<FloatKey>(reader);
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiUVData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiUVData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.UTranslation = new KeyGroup<FloatKey>(reader);
+        this.VTranslation = new KeyGroup<FloatKey>(reader);
+        this.UScalingAndTiling = new KeyGroup<FloatKey>(reader);
+        this.VScalingAndTiling = new KeyGroup<FloatKey>(reader);
+    }
 }

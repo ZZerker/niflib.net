@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiWireframeProperty.
+/// </summary>
+public class NiWireframeProperty : NiProperty
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public ushort Flags;
 
     /// <summary>
-    /// Class NiWireframeProperty.
+    /// Initializes a new instance of the <see cref="NiWireframeProperty"/> class.
     /// </summary>
-    public class NiWireframeProperty : NiProperty
-	{
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public ushort Flags;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiWireframeProperty"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiWireframeProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Flags = reader.ReadUInt16();
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiWireframeProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Flags = reader.ReadUInt16();
+    }
 }

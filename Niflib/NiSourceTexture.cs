@@ -17,102 +17,101 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiSourceTexture.
+/// </summary>
+public class NiSourceTexture : NiTexture
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The use external
+    /// </summary>
+    public bool UseExternal;
 
     /// <summary>
-    /// Class NiSourceTexture.
+    /// The file name
     /// </summary>
-    public class NiSourceTexture : NiTexture
-	{
-        /// <summary>
-        /// The use external
-        /// </summary>
-        public bool UseExternal;
+    public NiString FileName;
 
-        /// <summary>
-        /// The file name
-        /// </summary>
-        public NiString FileName;
+    /// <summary>
+    /// The pixel layout
+    /// </summary>
+    public ePixelLayout PixelLayout;
 
-        /// <summary>
-        /// The pixel layout
-        /// </summary>
-        public ePixelLayout PixelLayout;
+    /// <summary>
+    /// The use mipmaps
+    /// </summary>
+    public eMipMapFormat UseMipmaps;
 
-        /// <summary>
-        /// The use mipmaps
-        /// </summary>
-        public eMipMapFormat UseMipmaps;
+    /// <summary>
+    /// The alpha format
+    /// </summary>
+    public eAlphaFormat AlphaFormat;
 
-        /// <summary>
-        /// The alpha format
-        /// </summary>
-        public eAlphaFormat AlphaFormat;
+    /// <summary>
+    /// The is static
+    /// </summary>
+    public bool IsStatic;
 
-        /// <summary>
-        /// The is static
-        /// </summary>
-        public bool IsStatic;
+    /// <summary>
+    /// The direct render
+    /// </summary>
+    public bool DirectRender;
 
-        /// <summary>
-        /// The direct render
-        /// </summary>
-        public bool DirectRender;
+    /// <summary>
+    /// The persistent render data
+    /// </summary>
+    public bool PersistentRenderData;
 
-        /// <summary>
-        /// The persistent render data
-        /// </summary>
-        public bool PersistentRenderData;
+    /// <summary>
+    /// The internal texture
+    /// </summary>
+    public NiRef<ATextureRenderData> InternalTexture;
 
-        /// <summary>
-        /// The internal texture
-        /// </summary>
-        public NiRef<ATextureRenderData> InternalTexture;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiSourceTexture" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiSourceTexture(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.IsStatic = true;
-			this.UseExternal = reader.ReadBoolean(Version);
-			if (this.UseExternal)
-			{
-				this.FileName = new NiString(file, reader);
-				if (base.Version >= eNifVersion.VER_10_1_0_0)
-				{
-					reader.ReadUInt32();
-				}
-			}
-			if (!this.UseExternal)
-			{
-				if (base.Version <= eNifVersion.VER_10_0_1_0)
-				{
-					reader.ReadByte();
-				}
-				if (base.Version >= eNifVersion.VER_10_1_0_0)
-				{
-					this.FileName = new NiString(file, reader);
-				}
-				this.InternalTexture = new NiRef<ATextureRenderData>(reader);
-			}
-			this.PixelLayout = (ePixelLayout)reader.ReadUInt32();
-			this.UseMipmaps = (eMipMapFormat)reader.ReadUInt32();
-			this.AlphaFormat = (eAlphaFormat)reader.ReadUInt32();
-			this.IsStatic = reader.ReadBoolean(Version);
-			if (base.Version >= eNifVersion.VER_10_1_0_106)
-			{
-				this.DirectRender = reader.ReadBoolean(Version);
-			}
-			if (base.Version >= eNifVersion.VER_20_2_0_7)
-			{
-				this.PersistentRenderData = reader.ReadBoolean(Version);
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiSourceTexture" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiSourceTexture(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.IsStatic = true;
+        this.UseExternal = reader.ReadBoolean(Version);
+        if (this.UseExternal)
+        {
+            this.FileName = new NiString(file, reader);
+            if (base.Version >= eNifVersion.VER_10_1_0_0)
+            {
+                reader.ReadUInt32();
+            }
+        }
+        if (!this.UseExternal)
+        {
+            if (base.Version <= eNifVersion.VER_10_0_1_0)
+            {
+                reader.ReadByte();
+            }
+            if (base.Version >= eNifVersion.VER_10_1_0_0)
+            {
+                this.FileName = new NiString(file, reader);
+            }
+            this.InternalTexture = new NiRef<ATextureRenderData>(reader);
+        }
+        this.PixelLayout = (ePixelLayout)reader.ReadUInt32();
+        this.UseMipmaps = (eMipMapFormat)reader.ReadUInt32();
+        this.AlphaFormat = (eAlphaFormat)reader.ReadUInt32();
+        this.IsStatic = reader.ReadBoolean(Version);
+        if (base.Version >= eNifVersion.VER_10_1_0_106)
+        {
+            this.DirectRender = reader.ReadBoolean(Version);
+        }
+        if (base.Version >= eNifVersion.VER_20_2_0_7)
+        {
+            this.PersistentRenderData = reader.ReadBoolean(Version);
+        }
+    }
 }

@@ -17,30 +17,29 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eTargetColor
+/// </summary>
+public enum eTargetColor : ushort
+{
     /// <summary>
-    /// Enum eTargetColor
+    /// The t c_ ambient
     /// </summary>
-    public enum eTargetColor : ushort
-	{
-        /// <summary>
-        /// The t c_ ambient
-        /// </summary>
-        TC_AMBIENT,
-        /// <summary>
-        /// The t c_ diffuse
-        /// </summary>
-        TC_DIFFUSE,
-        /// <summary>
-        /// The t c_ specular
-        /// </summary>
-        TC_SPECULAR,
-        /// <summary>
-        /// The t c_ sel f_ illum
-        /// </summary>
-        TC_SELF_ILLUM
-    }
+    TC_AMBIENT,
+    /// <summary>
+    /// The t c_ diffuse
+    /// </summary>
+    TC_DIFFUSE,
+    /// <summary>
+    /// The t c_ specular
+    /// </summary>
+    TC_SPECULAR,
+    /// <summary>
+    /// The t c_ sel f_ illum
+    /// </summary>
+    TC_SELF_ILLUM
 }

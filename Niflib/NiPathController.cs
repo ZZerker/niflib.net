@@ -17,68 +17,67 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiPathController.
+/// </summary>
+public class NiPathController : NiTimeController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The unknown1
+    /// </summary>
+    public ushort Unknown1;
 
     /// <summary>
-    /// Class NiPathController.
+    /// The unknown2
     /// </summary>
-    public class NiPathController : NiTimeController
-	{
-        /// <summary>
-        /// The unknown1
-        /// </summary>
-        public ushort Unknown1;
+    public uint Unknown2;
 
-        /// <summary>
-        /// The unknown2
-        /// </summary>
-        public uint Unknown2;
+    /// <summary>
+    /// The unknown3
+    /// </summary>
+    public float Unknown3;
 
-        /// <summary>
-        /// The unknown3
-        /// </summary>
-        public float Unknown3;
+    /// <summary>
+    /// The unknown4
+    /// </summary>
+    public float Unknown4;
 
-        /// <summary>
-        /// The unknown4
-        /// </summary>
-        public float Unknown4;
+    /// <summary>
+    /// The unknown5
+    /// </summary>
+    public ushort Unknown5;
 
-        /// <summary>
-        /// The unknown5
-        /// </summary>
-        public ushort Unknown5;
+    /// <summary>
+    /// The position data
+    /// </summary>
+    public NiRef<NiPosData> PosData;
 
-        /// <summary>
-        /// The position data
-        /// </summary>
-        public NiRef<NiPosData> PosData;
+    /// <summary>
+    /// The float data
+    /// </summary>
+    public NiRef<NiFloatData> FloatData;
 
-        /// <summary>
-        /// The float data
-        /// </summary>
-        public NiRef<NiFloatData> FloatData;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiPathController" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiPathController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
-			{
-				this.Unknown1 = reader.ReadUInt16();
-			}
-			this.Unknown2 = reader.ReadUInt32();
-			this.Unknown3 = reader.ReadSingle();
-			this.Unknown4 = reader.ReadSingle();
-			this.Unknown5 = reader.ReadUInt16();
-			this.PosData = new NiRef<NiPosData>(reader);
-			this.FloatData = new NiRef<NiFloatData>(reader);
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiPathController" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiPathController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
+        {
+            this.Unknown1 = reader.ReadUInt16();
+        }
+        this.Unknown2 = reader.ReadUInt32();
+        this.Unknown3 = reader.ReadSingle();
+        this.Unknown4 = reader.ReadSingle();
+        this.Unknown5 = reader.ReadUInt16();
+        this.PosData = new NiRef<NiPosData>(reader);
+        this.FloatData = new NiRef<NiFloatData>(reader);
+    }
 }

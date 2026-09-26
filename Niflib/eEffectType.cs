@@ -17,30 +17,29 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eEffectType
+/// </summary>
+public enum eEffectType : uint
+{
     /// <summary>
-    /// Enum eEffectType
+    /// The effec t_ projecte d_ light
     /// </summary>
-    public enum eEffectType : uint
-	{
-        /// <summary>
-        /// The effec t_ projecte d_ light
-        /// </summary>
-        EFFECT_PROJECTED_LIGHT,
-        /// <summary>
-        /// The effec t_ projecte d_ shadow
-        /// </summary>
-        EFFECT_PROJECTED_SHADOW,
-        /// <summary>
-        /// The effec t_ environmen t_ map
-        /// </summary>
-        EFFECT_ENVIRONMENT_MAP,
-        /// <summary>
-        /// The effec t_ fo g_ map
-        /// </summary>
-        EFFECT_FOG_MAP
-    }
+    EFFECT_PROJECTED_LIGHT,
+    /// <summary>
+    /// The effec t_ projecte d_ shadow
+    /// </summary>
+    EFFECT_PROJECTED_SHADOW,
+    /// <summary>
+    /// The effec t_ environmen t_ map
+    /// </summary>
+    EFFECT_ENVIRONMENT_MAP,
+    /// <summary>
+    /// The effec t_ fo g_ map
+    /// </summary>
+    EFFECT_FOG_MAP
 }

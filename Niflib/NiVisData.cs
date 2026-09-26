@@ -17,34 +17,33 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiVisData.
+/// </summary>
+public class NiVisData : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The keys
+    /// </summary>
+    public ByteKey[] Keys;
 
     /// <summary>
-    /// Class NiVisData.
+    /// Initializes a new instance of the <see cref="NiVisData"/> class.
     /// </summary>
-    public class NiVisData : NiObject
-	{
-        /// <summary>
-        /// The keys
-        /// </summary>
-        public ByteKey[] Keys;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiVisData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiVisData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			uint num = reader.ReadUInt32();
-			this.Keys = new ByteKey[num];
-			for (int i = 0; i < this.Keys.Length; i++)
-			{
-				this.Keys[i] = new ByteKey(reader, eKeyType.LINEAR_KEY);
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiVisData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        uint num = reader.ReadUInt32();
+        this.Keys = new ByteKey[num];
+        for (int i = 0; i < this.Keys.Length; i++)
+        {
+            this.Keys[i] = new ByteKey(reader, eKeyType.LINEAR_KEY);
+        }
+    }
 }

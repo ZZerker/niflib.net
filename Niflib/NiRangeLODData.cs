@@ -17,43 +17,42 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiRangeLODData.
+/// </summary>
+public class NiRangeLODData : NiLODData
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The lod center
+    /// </summary>
+    public Vector3 LODCenter;
 
     /// <summary>
-    /// Class NiRangeLODData.
+    /// The lod levels
     /// </summary>
-    public class NiRangeLODData : NiLODData
-	{
-        /// <summary>
-        /// The lod center
-        /// </summary>
-        public Vector3 LODCenter;
+    public LODRange[] LODLevels;
 
-        /// <summary>
-        /// The lod levels
-        /// </summary>
-        public LODRange[] LODLevels;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiRangeLODData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiRangeLODData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.LODCenter = reader.ReadVector3();
-			uint num = reader.ReadUInt32();
-			this.LODLevels = new LODRange[num];
-			int num2 = 0;
-			while ((long)num2 < (long)((ulong)num))
-			{
-				this.LODLevels[num2] = new LODRange(file, reader);
-				num2++;
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiRangeLODData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiRangeLODData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.LODCenter = reader.ReadVector3();
+        uint num = reader.ReadUInt32();
+        this.LODLevels = new LODRange[num];
+        int num2 = 0;
+        while ((long)num2 < (long)((ulong)num))
+        {
+            this.LODLevels[num2] = new LODRange(file, reader);
+            num2++;
+        }
+    }
 }

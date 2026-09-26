@@ -17,66 +17,65 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class Particle.
+/// </summary>
+public class Particle
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The velocity
+    /// </summary>
+    public Vector3 Velocity;
 
     /// <summary>
-    /// Class Particle.
+    /// The unkown vector
     /// </summary>
-    public class Particle
-	{
-        /// <summary>
-        /// The velocity
-        /// </summary>
-        public Vector3 Velocity;
+    public Vector3 UnkownVector;
 
-        /// <summary>
-        /// The unkown vector
-        /// </summary>
-        public Vector3 UnkownVector;
+    /// <summary>
+    /// The lifetime
+    /// </summary>
+    public float Lifetime;
 
-        /// <summary>
-        /// The lifetime
-        /// </summary>
-        public float Lifetime;
+    /// <summary>
+    /// The lifespan
+    /// </summary>
+    public float Lifespan;
 
-        /// <summary>
-        /// The lifespan
-        /// </summary>
-        public float Lifespan;
+    /// <summary>
+    /// The timestamp
+    /// </summary>
+    public float Timestamp;
 
-        /// <summary>
-        /// The timestamp
-        /// </summary>
-        public float Timestamp;
+    /// <summary>
+    /// The unkown short
+    /// </summary>
+    public ushort UnkownShort;
 
-        /// <summary>
-        /// The unkown short
-        /// </summary>
-        public ushort UnkownShort;
+    /// <summary>
+    /// The vertex identifier
+    /// </summary>
+    public ushort VertexID;
 
-        /// <summary>
-        /// The vertex identifier
-        /// </summary>
-        public ushort VertexID;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Particle"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public Particle(NiFile file, BinaryReader reader)
-		{
-			this.Velocity = reader.ReadVector3();
-			this.UnkownVector = reader.ReadVector3();
-			this.Lifetime = reader.ReadSingle();
-			this.Lifespan = reader.ReadSingle();
-			this.Timestamp = reader.ReadSingle();
-			this.UnkownShort = reader.ReadUInt16();
-			this.VertexID = reader.ReadUInt16();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Particle"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public Particle(NiFile file, BinaryReader reader)
+    {
+        this.Velocity = reader.ReadVector3();
+        this.UnkownVector = reader.ReadVector3();
+        this.Lifetime = reader.ReadSingle();
+        this.Lifespan = reader.ReadSingle();
+        this.Timestamp = reader.ReadSingle();
+        this.UnkownShort = reader.ReadUInt16();
+        this.VertexID = reader.ReadUInt16();
+    }
 }

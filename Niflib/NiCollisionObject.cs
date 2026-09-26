@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiCollisionObject.
+/// </summary>
+public class NiCollisionObject : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The target
+    /// </summary>
+    public NiRef<NiAVObject> Target;
 
     /// <summary>
-    /// Class NiCollisionObject.
+    /// Initializes a new instance of the <see cref="NiCollisionObject" /> class.
     /// </summary>
-    public class NiCollisionObject : NiObject
-	{
-        /// <summary>
-        /// The target
-        /// </summary>
-        public NiRef<NiAVObject> Target;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiCollisionObject" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiCollisionObject(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Target = new NiRef<NiAVObject>(reader);
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiCollisionObject(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Target = new NiRef<NiAVObject>(reader);
+    }
 }

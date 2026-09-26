@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiLookAtController.
+/// </summary>
+public class NiLookAtController : NiTimeController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The unknown1
+    /// </summary>
+    public ushort Unknown1;
 
     /// <summary>
-    /// Class NiLookAtController.
+    /// The camera target node
     /// </summary>
-    public class NiLookAtController : NiTimeController
-	{
-        /// <summary>
-        /// The unknown1
-        /// </summary>
-        public ushort Unknown1;
+    public NiRef<NiNode> CameraTargetNode;
 
-        /// <summary>
-        /// The camera target node
-        /// </summary>
-        public NiRef<NiNode> CameraTargetNode;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiLookAtController" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiLookAtController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
-			{
-				this.Unknown1 = reader.ReadUInt16();
-			}
-			this.CameraTargetNode = new NiRef<NiNode>(reader);
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiLookAtController" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiLookAtController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
+        {
+            this.Unknown1 = reader.ReadUInt16();
+        }
+        this.CameraTargetNode = new NiRef<NiNode>(reader);
+    }
 }

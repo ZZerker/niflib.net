@@ -1,4 +1,4 @@
-﻿/*
+/*
  * DAWN OF LIGHT - The first free open source DAoC server emulator
  * 
  * This program is free software; you can redistribute it and/or
@@ -17,26 +17,25 @@
  *
  */
 
+using System;
+using System.IO;
 
-namespace Niflib
+namespace Niflib;
+
+/// <summary>
+/// Class NiShadeProperty.
+/// </summary>
+public class NiShadeProperty : NiProperty
 {
-	using System;
-	using System.IO;
-	
-	/// <summary>
-	/// Class NiShadeProperty.
-	/// </summary>
-	public class NiShadeProperty : NiProperty
-	{
-		public ushort Flags;
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiShadeProperty"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-		public NiShadeProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			Flags = reader.ReadUInt16();
-		}
-	}
+    public ushort Flags;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiShadeProperty"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiShadeProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Flags = reader.ReadUInt16();
+    }
 }

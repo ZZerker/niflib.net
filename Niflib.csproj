@@ -3,5 +3,6 @@
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Niflib</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 </Project>

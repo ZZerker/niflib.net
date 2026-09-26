@@ -17,47 +17,46 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class ChannelData.
+/// </summary>
+public class ChannelData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The type
+    /// </summary>
+    public eChannelType Type;
 
     /// <summary>
-    /// Class ChannelData.
+    /// The convention
     /// </summary>
-    public class ChannelData
-	{
-        /// <summary>
-        /// The type
-        /// </summary>
-        public eChannelType Type;
+    public eChannelConvention Convention;
 
-        /// <summary>
-        /// The convention
-        /// </summary>
-        public eChannelConvention Convention;
+    /// <summary>
+    /// The bits per channel
+    /// </summary>
+    public byte BitsPerChannel;
 
-        /// <summary>
-        /// The bits per channel
-        /// </summary>
-        public byte BitsPerChannel;
+    /// <summary>
+    /// The unkown byte
+    /// </summary>
+    public byte UnkownByte;
 
-        /// <summary>
-        /// The unkown byte
-        /// </summary>
-        public byte UnkownByte;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChannelData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public ChannelData(NiFile file, BinaryReader reader)
-		{
-			this.Type = (eChannelType)reader.ReadUInt32();
-			this.Convention = (eChannelConvention)reader.ReadUInt32();
-			this.BitsPerChannel = reader.ReadByte();
-			this.UnkownByte = reader.ReadByte();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ChannelData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public ChannelData(NiFile file, BinaryReader reader)
+    {
+        this.Type = (eChannelType)reader.ReadUInt32();
+        this.Convention = (eChannelConvention)reader.ReadUInt32();
+        this.BitsPerChannel = reader.ReadByte();
+        this.UnkownByte = reader.ReadByte();
+    }
 }

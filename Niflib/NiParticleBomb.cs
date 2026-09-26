@@ -17,75 +17,74 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticleBomb.
+/// </summary>
+public class NiParticleBomb : NiParticleModifier
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The decay
+    /// </summary>
+    public float Decay;
 
     /// <summary>
-    /// Class NiParticleBomb.
+    /// The duration
     /// </summary>
-    public class NiParticleBomb : NiParticleModifier
-	{
-        /// <summary>
-        /// The decay
-        /// </summary>
-        public float Decay;
+    public float Duration;
 
-        /// <summary>
-        /// The duration
-        /// </summary>
-        public float Duration;
+    /// <summary>
+    /// The delta v
+    /// </summary>
+    public float DeltaV;
 
-        /// <summary>
-        /// The delta v
-        /// </summary>
-        public float DeltaV;
+    /// <summary>
+    /// The start
+    /// </summary>
+    public float Start;
 
-        /// <summary>
-        /// The start
-        /// </summary>
-        public float Start;
+    /// <summary>
+    /// The decay type
+    /// </summary>
+    public eDecayType DecayType;
 
-        /// <summary>
-        /// The decay type
-        /// </summary>
-        public eDecayType DecayType;
+    /// <summary>
+    /// The symmetry type
+    /// </summary>
+    public eSymmetryType SymmetryType;
 
-        /// <summary>
-        /// The symmetry type
-        /// </summary>
-        public eSymmetryType SymmetryType;
+    /// <summary>
+    /// The position
+    /// </summary>
+    public Vector3 Position;
 
-        /// <summary>
-        /// The position
-        /// </summary>
-        public Vector3 Position;
+    /// <summary>
+    /// The direction
+    /// </summary>
+    public Vector3 Direction;
 
-        /// <summary>
-        /// The direction
-        /// </summary>
-        public Vector3 Direction;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleBomb" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticleBomb(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Decay = reader.ReadSingle();
-			this.Duration = reader.ReadSingle();
-			this.DeltaV = reader.ReadSingle();
-			this.Start = reader.ReadSingle();
-			this.DecayType = (eDecayType)reader.ReadUInt32();
-			if (base.Version >= eNifVersion.VER_4_1_0_12)
-			{
-				this.SymmetryType = (eSymmetryType)reader.ReadUInt32();
-			}
-			this.Position = reader.ReadVector3();
-			this.Direction = reader.ReadVector3();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiParticleBomb" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticleBomb(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Decay = reader.ReadSingle();
+        this.Duration = reader.ReadSingle();
+        this.DeltaV = reader.ReadSingle();
+        this.Start = reader.ReadSingle();
+        this.DecayType = (eDecayType)reader.ReadUInt32();
+        if (base.Version >= eNifVersion.VER_4_1_0_12)
+        {
+            this.SymmetryType = (eSymmetryType)reader.ReadUInt32();
+        }
+        this.Position = reader.ReadVector3();
+        this.Direction = reader.ReadVector3();
+    }
 }

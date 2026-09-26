@@ -17,58 +17,57 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiLODNode.
+/// </summary>
+public class NiLODNode : NiSwitchNode
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The lod center
+    /// </summary>
+    public Vector3 LODCenter;
 
     /// <summary>
-    /// Class NiLODNode.
+    /// The lod levels
     /// </summary>
-    public class NiLODNode : NiSwitchNode
-	{
-        /// <summary>
-        /// The lod center
-        /// </summary>
-        public Vector3 LODCenter;
+    public LODRange[] LODLevels;
 
-        /// <summary>
-        /// The lod levels
-        /// </summary>
-        public LODRange[] LODLevels;
+    /// <summary>
+    /// The lod level data
+    /// </summary>
+    public NiRef<NiLODData> LODLevelData;
 
-        /// <summary>
-        /// The lod level data
-        /// </summary>
-        public NiRef<NiLODData> LODLevelData;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiLODNode" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiLODNode(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (base.Version >= eNifVersion.VER_4_0_0_2 && base.Version <= eNifVersion.VER_10_0_1_0)
-			{
-				this.LODCenter = reader.ReadVector3();
-			}
-			if (base.Version <= eNifVersion.VER_10_0_1_0)
-			{
-				uint num = reader.ReadUInt32();
-				this.LODLevels = new LODRange[num];
-				int num2 = 0;
-				while ((long)num2 < (long)((ulong)num))
-				{
-					this.LODLevels[num2] = new LODRange(file, reader);
-					num2++;
-				}
-			}
-			if (base.Version >= eNifVersion.VER_10_0_1_0)
-			{
-				this.LODLevelData = new NiRef<NiLODData>(reader);
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiLODNode" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiLODNode(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (base.Version >= eNifVersion.VER_4_0_0_2 && base.Version <= eNifVersion.VER_10_0_1_0)
+        {
+            this.LODCenter = reader.ReadVector3();
+        }
+        if (base.Version <= eNifVersion.VER_10_0_1_0)
+        {
+            uint num = reader.ReadUInt32();
+            this.LODLevels = new LODRange[num];
+            int num2 = 0;
+            while ((long)num2 < (long)((ulong)num))
+            {
+                this.LODLevels[num2] = new LODRange(file, reader);
+                num2++;
+            }
+        }
+        if (base.Version >= eNifVersion.VER_10_0_1_0)
+        {
+            this.LODLevelData = new NiRef<NiLODData>(reader);
+        }
+    }
 }

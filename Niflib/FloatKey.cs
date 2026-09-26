@@ -17,65 +17,64 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class FloatKey.
+/// </summary>
+public class FloatKey : BaseKey
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The time
+    /// </summary>
+    public float Time;
 
     /// <summary>
-    /// Class FloatKey.
+    /// The value
     /// </summary>
-    public class FloatKey : BaseKey
-	{
-        /// <summary>
-        /// The time
-        /// </summary>
-        public float Time;
+    public float Value;
 
-        /// <summary>
-        /// The value
-        /// </summary>
-        public float Value;
+    /// <summary>
+    /// The forward
+    /// </summary>
+    public float Forward;
 
-        /// <summary>
-        /// The forward
-        /// </summary>
-        public float Forward;
+    /// <summary>
+    /// The backward
+    /// </summary>
+    public float Backward;
 
-        /// <summary>
-        /// The backward
-        /// </summary>
-        public float Backward;
+    /// <summary>
+    /// The TBC
+    /// </summary>
+    public Vector3 TBC;
 
-        /// <summary>
-        /// The TBC
-        /// </summary>
-        public Vector3 TBC;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FloatKey"/> class.
-        /// </summary>
-        /// <param name="reader">The reader.</param>
-        /// <param name="type">The type.</param>
-        /// <exception cref="Exception">Invalid eKeyType!</exception>
-        public FloatKey(BinaryReader reader, eKeyType type) : base(reader, type)
-		{
-			this.Time = reader.ReadSingle();
-			this.Value = reader.ReadSingle();
-			if (type < eKeyType.LINEAR_KEY || type > eKeyType.TBC_KEY)
-			{
-				throw new Exception("Invalid eKeyType!");
-			}
-			if (type == eKeyType.QUADRATIC_KEY)
-			{
-				this.Forward = reader.ReadSingle();
-				this.Backward = reader.ReadSingle();
-			}
-			if (type == eKeyType.TBC_KEY)
-			{
-				this.TBC = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FloatKey"/> class.
+    /// </summary>
+    /// <param name="reader">The reader.</param>
+    /// <param name="type">The type.</param>
+    /// <exception cref="Exception">Invalid eKeyType!</exception>
+    public FloatKey(BinaryReader reader, eKeyType type) : base(reader, type)
+    {
+        this.Time = reader.ReadSingle();
+        this.Value = reader.ReadSingle();
+        if (type < eKeyType.LINEAR_KEY || type > eKeyType.TBC_KEY)
+        {
+            throw new Exception("Invalid eKeyType!");
+        }
+        if (type == eKeyType.QUADRATIC_KEY)
+        {
+            this.Forward = reader.ReadSingle();
+            this.Backward = reader.ReadSingle();
+        }
+        if (type == eKeyType.TBC_KEY)
+        {
+            this.TBC = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+        }
+    }
 }

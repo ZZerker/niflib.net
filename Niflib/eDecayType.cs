@@ -17,26 +17,25 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eDecayType
+/// </summary>
+public enum eDecayType : uint
+{
     /// <summary>
-    /// Enum eDecayType
+    /// The deca y_ none
     /// </summary>
-    public enum eDecayType : uint
-	{
-        /// <summary>
-        /// The deca y_ none
-        /// </summary>
-        DECAY_NONE,
-        /// <summary>
-        /// The deca y_ linear
-        /// </summary>
-        DECAY_LINEAR,
-        /// <summary>
-        /// The deca y_ exponential
-        /// </summary>
-        DECAY_EXPONENTIAL
-    }
+    DECAY_NONE,
+    /// <summary>
+    /// The deca y_ linear
+    /// </summary>
+    DECAY_LINEAR,
+    /// <summary>
+    /// The deca y_ exponential
+    /// </summary>
+    DECAY_EXPONENTIAL
 }

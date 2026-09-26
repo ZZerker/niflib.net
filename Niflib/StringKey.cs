@@ -17,40 +17,39 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class StringKey.
+/// </summary>
+public class StringKey
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The time
+    /// </summary>
+    public float Time;
 
     /// <summary>
-    /// Class StringKey.
+    /// The value
     /// </summary>
-    public class StringKey
-	{
-        /// <summary>
-        /// The time
-        /// </summary>
-        public float Time;
+    public NiString Value;
 
-        /// <summary>
-        /// The value
-        /// </summary>
-        public NiString Value;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StringKey"/> class.
-        /// </summary>
-        /// <param name="reader">The reader.</param>
-        /// <param name="type">The type.</param>
-        /// <exception cref="Exception">Invalid eKeyType</exception>
-        public StringKey(BinaryReader reader, eKeyType type)
-		{
-			this.Time = reader.ReadSingle();
-			if (type != eKeyType.LINEAR_KEY)
-			{
-				throw new Exception("Invalid eKeyType");
-			}
-			this.Value = new NiString(null, reader);
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="StringKey"/> class.
+    /// </summary>
+    /// <param name="reader">The reader.</param>
+    /// <param name="type">The type.</param>
+    /// <exception cref="Exception">Invalid eKeyType</exception>
+    public StringKey(BinaryReader reader, eKeyType type)
+    {
+        this.Time = reader.ReadSingle();
+        if (type != eKeyType.LINEAR_KEY)
+        {
+            throw new Exception("Invalid eKeyType");
+        }
+        this.Value = new NiString(null, reader);
+    }
 }

@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiTexture.
+/// </summary>
+public class NiTexture : NiObjectNET
+{
     /// <summary>
-    /// Class NiTexture.
+    /// Initializes a new instance of the <see cref="NiTexture"/> class.
     /// </summary>
-    public class NiTexture : NiObjectNET
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiTexture"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiTexture(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiTexture(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

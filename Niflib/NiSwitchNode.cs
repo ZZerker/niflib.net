@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiSwitchNode.
+/// </summary>
+public class NiSwitchNode : NiNode
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The unkown flags
+    /// </summary>
+    public ushort UnkownFlags;
 
     /// <summary>
-    /// Class NiSwitchNode.
+    /// The unkown int
     /// </summary>
-    public class NiSwitchNode : NiNode
-	{
-        /// <summary>
-        /// The unkown flags
-        /// </summary>
-        public ushort UnkownFlags;
+    public int UnkownInt;
 
-        /// <summary>
-        /// The unkown int
-        /// </summary>
-        public int UnkownInt;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiSwitchNode"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiSwitchNode(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version >= eNifVersion.VER_10_0_1_0)
-			{
-				this.UnkownFlags = reader.ReadUInt16();
-			}
-			this.UnkownInt = reader.ReadInt32();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiSwitchNode"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiSwitchNode(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version >= eNifVersion.VER_10_0_1_0)
+        {
+            this.UnkownFlags = reader.ReadUInt16();
+        }
+        this.UnkownInt = reader.ReadInt32();
+    }
 }

@@ -17,32 +17,31 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiKeyframeController.
+/// </summary>
+public class NiKeyframeController : NiSingleInterpController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public NiRef<NiKeyframeData> Data;
 
     /// <summary>
-    /// Class NiKeyframeController.
+    /// Initializes a new instance of the <see cref="NiKeyframeController" /> class.
     /// </summary>
-    public class NiKeyframeController : NiSingleInterpController
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiKeyframeData> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiKeyframeController" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiKeyframeController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (base.Version <= eNifVersion.VER_10_1_0_0)
-			{
-				this.Data = new NiRef<NiKeyframeData>(reader);
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiKeyframeController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (base.Version <= eNifVersion.VER_10_1_0_0)
+        {
+            this.Data = new NiRef<NiKeyframeData>(reader);
+        }
+    }
 }

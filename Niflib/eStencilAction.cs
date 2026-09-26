@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eStencilAction
+/// </summary>
+public enum eStencilAction : uint
+{
     /// <summary>
-    /// Enum eStencilAction
+    /// The actio n_ keep
     /// </summary>
-    public enum eStencilAction : uint
-	{
-        /// <summary>
-        /// The actio n_ keep
-        /// </summary>
-        ACTION_KEEP,
-        /// <summary>
-        /// The actio n_ zero
-        /// </summary>
-        ACTION_ZERO,
-        /// <summary>
-        /// The actio n_ replace
-        /// </summary>
-        ACTION_REPLACE,
-        /// <summary>
-        /// The actio n_ increment
-        /// </summary>
-        ACTION_INCREMENT,
-        /// <summary>
-        /// The actio n_ decrement
-        /// </summary>
-        ACTION_DECREMENT,
-        /// <summary>
-        /// The actio n_ invert
-        /// </summary>
-        ACTION_INVERT
-    }
+    ACTION_KEEP,
+    /// <summary>
+    /// The actio n_ zero
+    /// </summary>
+    ACTION_ZERO,
+    /// <summary>
+    /// The actio n_ replace
+    /// </summary>
+    ACTION_REPLACE,
+    /// <summary>
+    /// The actio n_ increment
+    /// </summary>
+    ACTION_INCREMENT,
+    /// <summary>
+    /// The actio n_ decrement
+    /// </summary>
+    ACTION_DECREMENT,
+    /// <summary>
+    /// The actio n_ invert
+    /// </summary>
+    ACTION_INVERT
 }

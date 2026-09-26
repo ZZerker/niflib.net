@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiAutoNormalParticles.
+/// </summary>
+public class NiAutoNormalParticles : NiParticles
+{
     /// <summary>
-    /// Class NiAutoNormalParticles.
+    /// Initializes a new instance of the <see cref="NiAutoNormalParticles" /> class.
     /// </summary>
-    public class NiAutoNormalParticles : NiParticles
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiAutoNormalParticles" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiAutoNormalParticles(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiAutoNormalParticles(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiBoolInterpController.
+/// </summary>
+public class NiBoolInterpController : NiSingleInterpController
+{
     /// <summary>
-    /// Class NiBoolInterpController.
+    /// Initializes a new instance of the <see cref="NiBoolInterpController" /> class.
     /// </summary>
-    public class NiBoolInterpController : NiSingleInterpController
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiBoolInterpController" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiBoolInterpController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiBoolInterpController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

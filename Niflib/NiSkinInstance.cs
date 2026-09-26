@@ -17,57 +17,56 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiSkinInstance.
+/// </summary>
+public class NiSkinInstance : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public NiRef<NiSkinData> Data;
 
     /// <summary>
-    /// Class NiSkinInstance.
+    /// The partition
     /// </summary>
-    public class NiSkinInstance : NiObject
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiSkinData> Data;
+    public NiRef<NiSkinPartition> Partition;
 
-        /// <summary>
-        /// The partition
-        /// </summary>
-        public NiRef<NiSkinPartition> Partition;
+    /// <summary>
+    /// The skeleton root
+    /// </summary>
+    public NiRef<NiNode> SkeletonRoot;
 
-        /// <summary>
-        /// The skeleton root
-        /// </summary>
-        public NiRef<NiNode> SkeletonRoot;
+    /// <summary>
+    /// The bones
+    /// </summary>
+    public NiRef<NiNode>[] Bones;
 
-        /// <summary>
-        /// The bones
-        /// </summary>
-        public NiRef<NiNode>[] Bones;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiSkinInstance"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiSkinInstance(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = new NiRef<NiSkinData>(reader);
-			if (base.Version >= eNifVersion.VER_10_2_0_0)
-			{
-				this.Partition = new NiRef<NiSkinPartition>(reader);
-			}
-			this.SkeletonRoot = new NiRef<NiNode>(reader);
-			uint num = reader.ReadUInt32();
-			this.Bones = new NiRef<NiNode>[num];
-			int num2 = 0;
-			while ((long)num2 < (long)((ulong)num))
-			{
-				this.Bones[num2] = new NiRef<NiNode>(reader);
-				num2++;
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiSkinInstance"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiSkinInstance(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = new NiRef<NiSkinData>(reader);
+        if (base.Version >= eNifVersion.VER_10_2_0_0)
+        {
+            this.Partition = new NiRef<NiSkinPartition>(reader);
+        }
+        this.SkeletonRoot = new NiRef<NiNode>(reader);
+        uint num = reader.ReadUInt32();
+        this.Bones = new NiRef<NiNode>[num];
+        int num2 = 0;
+        while ((long)num2 < (long)((ulong)num))
+        {
+            this.Bones[num2] = new NiRef<NiNode>(reader);
+            num2++;
+        }
+    }
 }

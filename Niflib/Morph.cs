@@ -17,78 +17,77 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class Morph.
+/// </summary>
+public class Morph
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The frame name
+    /// </summary>
+    public NiString FrameName;
 
     /// <summary>
-    /// Class Morph.
+    /// The number keys
     /// </summary>
-    public class Morph
-	{
-        /// <summary>
-        /// The frame name
-        /// </summary>
-        public NiString FrameName;
+    public uint NumKeys;
 
-        /// <summary>
-        /// The number keys
-        /// </summary>
-        public uint NumKeys;
+    /// <summary>
+    /// The interpolation
+    /// </summary>
+    public uint Interpolation;
 
-        /// <summary>
-        /// The interpolation
-        /// </summary>
-        public uint Interpolation;
+    /// <summary>
+    /// The keys
+    /// </summary>
+    public KeyGroup<FloatKey> Keys;
 
-        /// <summary>
-        /// The keys
-        /// </summary>
-        public KeyGroup<FloatKey> Keys;
+    /// <summary>
+    /// The unkown int
+    /// </summary>
+    public uint UnkownInt;
 
-        /// <summary>
-        /// The unkown int
-        /// </summary>
-        public uint UnkownInt;
+    /// <summary>
+    /// The vectors
+    /// </summary>
+    public Vector3[] Vectors;
 
-        /// <summary>
-        /// The vectors
-        /// </summary>
-        public Vector3[] Vectors;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Morph"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        /// <param name="numVertices">The number vertices.</param>
-        public Morph(NiFile file, BinaryReader reader, uint numVertices)
-		{
-			if (file.Version >= eNifVersion.VER_10_1_0_106)
-			{
-				this.FrameName = new NiString(file, reader);
-			}
-			if (file.Version <= eNifVersion.VER_10_1_0_0)
-			{
-				this.Keys = new KeyGroup<FloatKey>(reader);
-			}
-			if (file.Version >= eNifVersion.VER_10_1_0_106 && file.Version <= eNifVersion.VER_10_2_0_0)
-			{
-				this.UnkownInt = reader.ReadUInt32();
-			}
-			if (file.Version >= eNifVersion.VER_20_0_0_4 && file.Version <= eNifVersion.VER_20_1_0_3)
-			{
-				this.UnkownInt = reader.ReadUInt32();
-			}
-			this.Vectors = new Vector3[numVertices];
-			int num = 0;
-			while ((long)num < (long)((ulong)numVertices))
-			{
-				this.Vectors[num] = reader.ReadVector3();
-				num++;
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Morph"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    /// <param name="numVertices">The number vertices.</param>
+    public Morph(NiFile file, BinaryReader reader, uint numVertices)
+    {
+        if (file.Version >= eNifVersion.VER_10_1_0_106)
+        {
+            this.FrameName = new NiString(file, reader);
+        }
+        if (file.Version <= eNifVersion.VER_10_1_0_0)
+        {
+            this.Keys = new KeyGroup<FloatKey>(reader);
+        }
+        if (file.Version >= eNifVersion.VER_10_1_0_106 && file.Version <= eNifVersion.VER_10_2_0_0)
+        {
+            this.UnkownInt = reader.ReadUInt32();
+        }
+        if (file.Version >= eNifVersion.VER_20_0_0_4 && file.Version <= eNifVersion.VER_20_1_0_3)
+        {
+            this.UnkownInt = reader.ReadUInt32();
+        }
+        this.Vectors = new Vector3[numVertices];
+        int num = 0;
+        while ((long)num < (long)((ulong)numVertices))
+        {
+            this.Vectors[num] = reader.ReadVector3();
+            num++;
+        }
+    }
 }

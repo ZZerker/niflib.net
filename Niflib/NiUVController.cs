@@ -17,35 +17,34 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiUVController.
+/// </summary>
+public class NiUVController : NiTimeController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The unkown short1
+    /// </summary>
+    public ushort UnkownShort1;
 
     /// <summary>
-    /// Class NiUVController.
+    /// The data
     /// </summary>
-    public class NiUVController : NiTimeController
-	{
-        /// <summary>
-        /// The unkown short1
-        /// </summary>
-        public ushort UnkownShort1;
+    public NiRef<NiUVData> Data;
 
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiUVData> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiUVController"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiUVController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.UnkownShort1 = reader.ReadUInt16();
-			this.Data = new NiRef<NiUVData>(reader);
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiUVController"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiUVController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.UnkownShort1 = reader.ReadUInt16();
+        this.Data = new NiRef<NiUVData>(reader);
+    }
 }

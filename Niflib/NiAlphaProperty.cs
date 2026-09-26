@@ -17,35 +17,34 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiAlphaProperty.
+/// </summary>
+public class NiAlphaProperty : NiProperty
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public ushort Flags;
 
     /// <summary>
-    /// Class NiAlphaProperty.
+    /// The threshold
     /// </summary>
-    public class NiAlphaProperty : NiProperty
-	{
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public ushort Flags;
+    public byte Threshold;
 
-        /// <summary>
-        /// The threshold
-        /// </summary>
-        public byte Threshold;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiAlphaProperty" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiAlphaProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Flags = reader.ReadUInt16();
-			this.Threshold = reader.ReadByte();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiAlphaProperty" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiAlphaProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Flags = reader.ReadUInt16();
+        this.Threshold = reader.ReadByte();
+    }
 }

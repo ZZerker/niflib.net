@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiBooleanExtraData.
+/// </summary>
+public class NiBooleanExtraData : NiExtraData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public bool Data;
 
     /// <summary>
-    /// Class NiBooleanExtraData.
+    /// Initializes a new instance of the <see cref="NiBooleanExtraData" /> class.
     /// </summary>
-    public class NiBooleanExtraData : NiExtraData
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public bool Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiBooleanExtraData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiBooleanExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = reader.ReadBoolean(Version);
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiBooleanExtraData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = reader.ReadBoolean(Version);
+    }
 }

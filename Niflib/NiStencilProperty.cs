@@ -17,89 +17,88 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiStencilProperty.
+/// </summary>
+public class NiStencilProperty : NiProperty
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public ushort Flags;
 
     /// <summary>
-    /// Class NiStencilProperty.
+    /// The is stencil enabled
     /// </summary>
-    public class NiStencilProperty : NiProperty
-	{
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public ushort Flags;
+    public bool IsStencilEnabled;
 
-        /// <summary>
-        /// The is stencil enabled
-        /// </summary>
-        public bool IsStencilEnabled;
+    /// <summary>
+    /// The stencil function
+    /// </summary>
+    public eStencilCompareMode StencilFunction;
 
-        /// <summary>
-        /// The stencil function
-        /// </summary>
-        public eStencilCompareMode StencilFunction;
+    /// <summary>
+    /// The stencil reference
+    /// </summary>
+    public uint StencilRef;
 
-        /// <summary>
-        /// The stencil reference
-        /// </summary>
-        public uint StencilRef;
+    /// <summary>
+    /// The stencil mask
+    /// </summary>
+    public uint StencilMask;
 
-        /// <summary>
-        /// The stencil mask
-        /// </summary>
-        public uint StencilMask;
+    /// <summary>
+    /// The fail action
+    /// </summary>
+    public eStencilAction FailAction;
 
-        /// <summary>
-        /// The fail action
-        /// </summary>
-        public eStencilAction FailAction;
+    /// <summary>
+    /// The z fail action
+    /// </summary>
+    public eStencilAction ZFailAction;
 
-        /// <summary>
-        /// The z fail action
-        /// </summary>
-        public eStencilAction ZFailAction;
+    /// <summary>
+    /// The pass action
+    /// </summary>
+    public eStencilAction PassAction;
 
-        /// <summary>
-        /// The pass action
-        /// </summary>
-        public eStencilAction PassAction;
+    /// <summary>
+    /// The face draw mode
+    /// </summary>
+    public eFaceDrawMode FaceDrawMode;
 
-        /// <summary>
-        /// The face draw mode
-        /// </summary>
-        public eFaceDrawMode FaceDrawMode;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiStencilProperty"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiStencilProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version <= eNifVersion.VER_10_0_1_2)
-			{
-				this.Flags = reader.ReadUInt16();
-			}
-			if (this.File.Header.Version <= eNifVersion.VER_20_0_0_5)
-			{
-				this.IsStencilEnabled = reader.ReadBoolean(Version);
-				this.StencilFunction = (eStencilCompareMode)reader.ReadUInt32();
-				this.StencilRef = reader.ReadUInt32();
-				this.StencilMask = reader.ReadUInt32();
-				this.FailAction = (eStencilAction)reader.ReadUInt32();
-				this.ZFailAction = (eStencilAction)reader.ReadUInt32();
-				this.PassAction = (eStencilAction)reader.ReadUInt32();
-				this.FaceDrawMode = (eFaceDrawMode)reader.ReadUInt32();
-			}
-			if (this.File.Header.Version >= eNifVersion.VER_20_1_0_3)
-			{
-				this.Flags = reader.ReadUInt16();
-				this.StencilRef = reader.ReadUInt32();
-				this.StencilMask = reader.ReadUInt32();
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiStencilProperty"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiStencilProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version <= eNifVersion.VER_10_0_1_2)
+        {
+            this.Flags = reader.ReadUInt16();
+        }
+        if (this.File.Header.Version <= eNifVersion.VER_20_0_0_5)
+        {
+            this.IsStencilEnabled = reader.ReadBoolean(Version);
+            this.StencilFunction = (eStencilCompareMode)reader.ReadUInt32();
+            this.StencilRef = reader.ReadUInt32();
+            this.StencilMask = reader.ReadUInt32();
+            this.FailAction = (eStencilAction)reader.ReadUInt32();
+            this.ZFailAction = (eStencilAction)reader.ReadUInt32();
+            this.PassAction = (eStencilAction)reader.ReadUInt32();
+            this.FaceDrawMode = (eFaceDrawMode)reader.ReadUInt32();
+        }
+        if (this.File.Header.Version >= eNifVersion.VER_20_1_0_3)
+        {
+            this.Flags = reader.ReadUInt16();
+            this.StencilRef = reader.ReadUInt32();
+            this.StencilMask = reader.ReadUInt32();
+        }
+    }
 }

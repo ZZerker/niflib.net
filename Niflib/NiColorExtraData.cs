@@ -17,30 +17,29 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiColorExtraData.
+/// </summary>
+public class NiColorExtraData : NiExtraData
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public Color4 Data;
 
     /// <summary>
-    /// Class NiColorExtraData.
+    /// Initializes a new instance of the <see cref="NiColorExtraData" /> class.
     /// </summary>
-    public class NiColorExtraData : NiExtraData
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public Color4 Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiColorExtraData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiColorExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = reader.ReadColor4();
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiColorExtraData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = reader.ReadColor4();
+    }
 }

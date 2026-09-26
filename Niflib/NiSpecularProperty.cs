@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiSpecularProperty.
+/// </summary>
+public class NiSpecularProperty : NiProperty
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public ushort Flags;
 
     /// <summary>
-    /// Class NiSpecularProperty.
+    /// Initializes a new instance of the <see cref="NiSpecularProperty"/> class.
     /// </summary>
-    public class NiSpecularProperty : NiProperty
-	{
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public ushort Flags;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiSpecularProperty"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiSpecularProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Flags = reader.ReadUInt16();
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiSpecularProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Flags = reader.ReadUInt16();
+    }
 }

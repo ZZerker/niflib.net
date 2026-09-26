@@ -17,41 +17,40 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiPointLight.
+/// </summary>
+public class NiPointLight : NiLight
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The constant attenuation
+    /// </summary>
+    public float ConstantAttenuation;
 
     /// <summary>
-    /// Class NiPointLight.
+    /// The linear attenuation
     /// </summary>
-    public class NiPointLight : NiLight
-	{
-        /// <summary>
-        /// The constant attenuation
-        /// </summary>
-        public float ConstantAttenuation;
+    public float LinearAttenuation;
 
-        /// <summary>
-        /// The linear attenuation
-        /// </summary>
-        public float LinearAttenuation;
+    /// <summary>
+    /// The quadratic attenuation
+    /// </summary>
+    public float QuadraticAttenuation;
 
-        /// <summary>
-        /// The quadratic attenuation
-        /// </summary>
-        public float QuadraticAttenuation;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiPointLight"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiPointLight(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.ConstantAttenuation = reader.ReadSingle();
-			this.LinearAttenuation = reader.ReadSingle();
-			this.QuadraticAttenuation = reader.ReadSingle();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiPointLight"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiPointLight(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.ConstantAttenuation = reader.ReadSingle();
+        this.LinearAttenuation = reader.ReadSingle();
+        this.QuadraticAttenuation = reader.ReadSingle();
+    }
 }

@@ -17,21 +17,20 @@
  *
  */
 
-namespace Niflib
-{
-    public struct Color4
-    {
-        public float Red;
-        public float Green;
-        public float Blue;
-        public float Alpha;
+namespace Niflib;
 
-        public Color4(float red, float green, float blue, float alpha)
-        {
-            this.Red = red;
-            this.Green = green;
-            this.Blue = blue;
-            this.Alpha = alpha;
-        }
+public struct Color4
+{
+    public float Red;
+    public float Green;
+    public float Blue;
+    public float Alpha;
+
+    public Color4(float red, float green, float blue, float alpha)
+    {
+        this.Red = red;
+        this.Green = green;
+        this.Blue = blue;
+        this.Alpha = alpha;
     }
 }

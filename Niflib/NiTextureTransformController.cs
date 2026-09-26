@@ -17,50 +17,49 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiTextureTransformController.
+/// </summary>
+public class NiTextureTransformController : NiFloatInterpController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The unkown2
+    /// </summary>
+    public byte Unkown2;
 
     /// <summary>
-    /// Class NiTextureTransformController.
+    /// The texture slot
     /// </summary>
-    public class NiTextureTransformController : NiFloatInterpController
-	{
-        /// <summary>
-        /// The unkown2
-        /// </summary>
-        public byte Unkown2;
+    public eTexType TextureSlot;
 
-        /// <summary>
-        /// The texture slot
-        /// </summary>
-        public eTexType TextureSlot;
+    /// <summary>
+    /// The operation
+    /// </summary>
+    public eTexTransform Operation;
 
-        /// <summary>
-        /// The operation
-        /// </summary>
-        public eTexTransform Operation;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public NiRef<NiFloatData> Data;
 
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiFloatData> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiTextureTransformController"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiTextureTransformController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Unkown2 = reader.ReadByte();
-			this.TextureSlot = (eTexType)reader.ReadUInt32();
-			this.Operation = (eTexTransform)reader.ReadUInt32();
-			if (base.Version <= eNifVersion.VER_10_1_0_0)
-			{
-				this.Data = new NiRef<NiFloatData>(reader);
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiTextureTransformController"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiTextureTransformController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Unkown2 = reader.ReadByte();
+        this.TextureSlot = (eTexType)reader.ReadUInt32();
+        this.Operation = (eTexTransform)reader.ReadUInt32();
+        if (base.Version <= eNifVersion.VER_10_1_0_0)
+        {
+            this.Data = new NiRef<NiFloatData>(reader);
+        }
+    }
 }

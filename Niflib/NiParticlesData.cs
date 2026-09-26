@@ -17,105 +17,104 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticlesData.
+/// </summary>
+public class NiParticlesData : NiGeometryData
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The number particles
+    /// </summary>
+    public ushort NumParticles;
 
     /// <summary>
-    /// Class NiParticlesData.
+    /// The particle radius
     /// </summary>
-    public class NiParticlesData : NiGeometryData
-	{
-        /// <summary>
-        /// The number particles
-        /// </summary>
-        public ushort NumParticles;
+    public float ParticleRadius;
 
-        /// <summary>
-        /// The particle radius
-        /// </summary>
-        public float ParticleRadius;
+    /// <summary>
+    /// The has radii
+    /// </summary>
+    public bool HasRadii;
 
-        /// <summary>
-        /// The has radii
-        /// </summary>
-        public bool HasRadii;
+    /// <summary>
+    /// The radii
+    /// </summary>
+    public float[] Radii;
 
-        /// <summary>
-        /// The radii
-        /// </summary>
-        public float[] Radii;
+    /// <summary>
+    /// The number active
+    /// </summary>
+    public ushort NumActive;
 
-        /// <summary>
-        /// The number active
-        /// </summary>
-        public ushort NumActive;
+    /// <summary>
+    /// The has sizes
+    /// </summary>
+    public bool HasSizes;
 
-        /// <summary>
-        /// The has sizes
-        /// </summary>
-        public bool HasSizes;
+    /// <summary>
+    /// The sizes
+    /// </summary>
+    public float[] Sizes;
 
-        /// <summary>
-        /// The sizes
-        /// </summary>
-        public float[] Sizes;
+    /// <summary>
+    /// The has rotations
+    /// </summary>
+    public bool HasRotations;
 
-        /// <summary>
-        /// The has rotations
-        /// </summary>
-        public bool HasRotations;
+    /// <summary>
+    /// The rotations
+    /// </summary>
+    public Vector4[] Rotations;
 
-        /// <summary>
-        /// The rotations
-        /// </summary>
-        public Vector4[] Rotations;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticlesData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticlesData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version <= eNifVersion.VER_4_0_0_2)
-			{
-				this.NumParticles = reader.ReadUInt16();
-			}
-			if (this.File.Header.Version <= eNifVersion.VER_10_0_1_0)
-			{
-				this.ParticleRadius = reader.ReadSingle();
-			}
-			if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
-			{
-				this.HasRadii = reader.ReadBoolean(Version);
-				if (this.HasRadii)
-				{
-					this.Radii = reader.ReadFloatArray((int)this.NumVertices);
-				}
-			}
-			this.NumActive = reader.ReadUInt16();
-			this.HasSizes = reader.ReadBoolean(Version);
-			if (this.HasSizes)
-			{
-				this.Sizes = reader.ReadFloatArray((int)this.NumVertices);
-			}
-			if (this.File.Header.Version >= eNifVersion.VER_10_0_1_0)
-			{
-				this.HasRotations = reader.ReadBoolean(Version);
-				if (this.HasRotations)
-				{
-					this.Rotations = new Vector4[this.NumVertices];
-					int num = 0;
-					while ((long)num < (long)((ulong)this.NumVertices))
-					{
-						this.Rotations[num] = reader.ReadVector4();
-						num++;
-					}
-				}
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiParticlesData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticlesData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version <= eNifVersion.VER_4_0_0_2)
+        {
+            this.NumParticles = reader.ReadUInt16();
+        }
+        if (this.File.Header.Version <= eNifVersion.VER_10_0_1_0)
+        {
+            this.ParticleRadius = reader.ReadSingle();
+        }
+        if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
+        {
+            this.HasRadii = reader.ReadBoolean(Version);
+            if (this.HasRadii)
+            {
+                this.Radii = reader.ReadFloatArray((int)this.NumVertices);
+            }
+        }
+        this.NumActive = reader.ReadUInt16();
+        this.HasSizes = reader.ReadBoolean(Version);
+        if (this.HasSizes)
+        {
+            this.Sizes = reader.ReadFloatArray((int)this.NumVertices);
+        }
+        if (this.File.Header.Version >= eNifVersion.VER_10_0_1_0)
+        {
+            this.HasRotations = reader.ReadBoolean(Version);
+            if (this.HasRotations)
+            {
+                this.Rotations = new Vector4[this.NumVertices];
+                int num = 0;
+                while ((long)num < (long)((ulong)this.NumVertices))
+                {
+                    this.Rotations[num] = reader.ReadVector4();
+                    num++;
+                }
+            }
+        }
+    }
 }

@@ -17,41 +17,40 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiObject.
+/// </summary>
+public class NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The file
+    /// </summary>
+    public NiFile File;
 
     /// <summary>
-    /// Class NiObject.
+    /// Gets the version.
     /// </summary>
-    public class NiObject
-	{
-        /// <summary>
-        /// The file
-        /// </summary>
-        public NiFile File;
+    /// <value>The version.</value>
+    public eNifVersion Version
+    {
+        get
+        {
+            return this.File.Version;
+        }
+    }
 
-        /// <summary>
-        /// Gets the version.
-        /// </summary>
-        /// <value>The version.</value>
-        public eNifVersion Version
-		{
-			get
-			{
-				return this.File.Version;
-			}
-		}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiObject"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiObject(NiFile file, BinaryReader reader)
-		{
-			this.File = file;
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiObject"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiObject(NiFile file, BinaryReader reader)
+    {
+        this.File = file;
+    }
 }

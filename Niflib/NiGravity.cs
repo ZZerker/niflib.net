@@ -17,57 +17,56 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiGravity.
+/// </summary>
+public class NiGravity : NiParticleModifier
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The unkown float1
+    /// </summary>
+    public float UnkownFloat1;
 
     /// <summary>
-    /// Class NiGravity.
+    /// The force
     /// </summary>
-    public class NiGravity : NiParticleModifier
-	{
-        /// <summary>
-        /// The unkown float1
-        /// </summary>
-        public float UnkownFloat1;
+    public float Force;
 
-        /// <summary>
-        /// The force
-        /// </summary>
-        public float Force;
+    /// <summary>
+    /// The type
+    /// </summary>
+    public uint Type;
 
-        /// <summary>
-        /// The type
-        /// </summary>
-        public uint Type;
+    /// <summary>
+    /// The position
+    /// </summary>
+    public Vector3 Position;
 
-        /// <summary>
-        /// The position
-        /// </summary>
-        public Vector3 Position;
+    /// <summary>
+    /// The direction
+    /// </summary>
+    public Vector3 Direction;
 
-        /// <summary>
-        /// The direction
-        /// </summary>
-        public Vector3 Direction;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiGravity" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiGravity(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version >= eNifVersion.VER_4_0_0_2)
-			{
-				this.UnkownFloat1 = reader.ReadSingle();
-			}
-			this.Force = reader.ReadSingle();
-			this.Type = reader.ReadUInt32();
-			this.Position = reader.ReadVector3();
-			this.Direction = reader.ReadVector3();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiGravity" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiGravity(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version >= eNifVersion.VER_4_0_0_2)
+        {
+            this.UnkownFloat1 = reader.ReadSingle();
+        }
+        this.Force = reader.ReadSingle();
+        this.Type = reader.ReadUInt32();
+        this.Position = reader.ReadVector3();
+        this.Direction = reader.ReadVector3();
+    }
 }

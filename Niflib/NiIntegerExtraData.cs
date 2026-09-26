@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiIntegerExtraData.
+/// </summary>
+public class NiIntegerExtraData : NiExtraData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public uint Data;
 
     /// <summary>
-    /// Class NiIntegerExtraData.
+    /// Initializes a new instance of the <see cref="NiIntegerExtraData"/> class.
     /// </summary>
-    public class NiIntegerExtraData : NiExtraData
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public uint Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiIntegerExtraData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiIntegerExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = reader.ReadUInt32();
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiIntegerExtraData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = reader.ReadUInt32();
+    }
 }

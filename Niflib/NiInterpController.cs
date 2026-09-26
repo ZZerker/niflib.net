@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiInterpController.
+/// </summary>
+public class NiInterpController : NiTimeController
+{
     /// <summary>
-    /// Class NiInterpController.
+    /// Initializes a new instance of the <see cref="NiInterpController" /> class.
     /// </summary>
-    public class NiInterpController : NiTimeController
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiInterpController" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiInterpController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiInterpController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

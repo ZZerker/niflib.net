@@ -17,34 +17,33 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eKeyType
+/// </summary>
+public enum eKeyType : uint
+{
     /// <summary>
-    /// Enum eKeyType
+    /// The linea r_ key
     /// </summary>
-    public enum eKeyType : uint
-	{
-        /// <summary>
-        /// The linea r_ key
-        /// </summary>
-        LINEAR_KEY = 1u,
-        /// <summary>
-        /// The quadrati c_ key
-        /// </summary>
-        QUADRATIC_KEY,
-        /// <summary>
-        /// The tb c_ key
-        /// </summary>
-        TBC_KEY,
-        /// <summary>
-        /// The xy z_ rotatio n_ key
-        /// </summary>
-        XYZ_ROTATION_KEY,
-        /// <summary>
-        /// The cons t_ key
-        /// </summary>
-        CONST_KEY
-    }
+    LINEAR_KEY = 1u,
+    /// <summary>
+    /// The quadrati c_ key
+    /// </summary>
+    QUADRATIC_KEY,
+    /// <summary>
+    /// The tb c_ key
+    /// </summary>
+    TBC_KEY,
+    /// <summary>
+    /// The xy z_ rotatio n_ key
+    /// </summary>
+    XYZ_ROTATION_KEY,
+    /// <summary>
+    /// The cons t_ key
+    /// </summary>
+    CONST_KEY
 }

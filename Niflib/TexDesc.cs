@@ -17,124 +17,123 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class TexDesc.
+/// </summary>
+public class TexDesc
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The source
+    /// </summary>
+    public NiRef<NiSourceTexture> Source;
 
     /// <summary>
-    /// Class TexDesc.
+    /// The clamp mode
     /// </summary>
-    public class TexDesc
-	{
-        /// <summary>
-        /// The source
-        /// </summary>
-        public NiRef<NiSourceTexture> Source;
+    public eTexClampMode ClampMode;
 
-        /// <summary>
-        /// The clamp mode
-        /// </summary>
-        public eTexClampMode ClampMode;
+    /// <summary>
+    /// The filter mode
+    /// </summary>
+    public eTexFilterMode FilterMode;
 
-        /// <summary>
-        /// The filter mode
-        /// </summary>
-        public eTexFilterMode FilterMode;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public ushort Flags;
 
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public ushort Flags;
+    /// <summary>
+    /// The uv set index
+    /// </summary>
+    public uint UVSetIndex;
 
-        /// <summary>
-        /// The uv set index
-        /// </summary>
-        public uint UVSetIndex;
+    /// <summary>
+    /// The p s2 l
+    /// </summary>
+    public short PS2L;
 
-        /// <summary>
-        /// The p s2 l
-        /// </summary>
-        public short PS2L;
+    /// <summary>
+    /// The p s2 k
+    /// </summary>
+    public short PS2K;
 
-        /// <summary>
-        /// The p s2 k
-        /// </summary>
-        public short PS2K;
+    /// <summary>
+    /// The has texture transform
+    /// </summary>
+    public bool HasTextureTransform;
 
-        /// <summary>
-        /// The has texture transform
-        /// </summary>
-        public bool HasTextureTransform;
+    /// <summary>
+    /// The translation
+    /// </summary>
+    public Vector2 Translation;
 
-        /// <summary>
-        /// The translation
-        /// </summary>
-        public Vector2 Translation;
+    /// <summary>
+    /// The tiling
+    /// </summary>
+    public Vector2 Tiling;
 
-        /// <summary>
-        /// The tiling
-        /// </summary>
-        public Vector2 Tiling;
+    /// <summary>
+    /// The w rotation
+    /// </summary>
+    public float WRotation;
 
-        /// <summary>
-        /// The w rotation
-        /// </summary>
-        public float WRotation;
+    /// <summary>
+    /// The transform type
+    /// </summary>
+    public uint TransformType;
 
-        /// <summary>
-        /// The transform type
-        /// </summary>
-        public uint TransformType;
+    /// <summary>
+    /// The center offset
+    /// </summary>
+    public Vector2 CenterOffset;
 
-        /// <summary>
-        /// The center offset
-        /// </summary>
-        public Vector2 CenterOffset;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TexDesc"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public TexDesc(NiFile file, BinaryReader reader)
-		{
-			this.Source = new NiRef<NiSourceTexture>(reader);
-			if (file.Version <= eNifVersion.VER_20_0_0_5)
-			{
-				this.ClampMode = (eTexClampMode)reader.ReadUInt32();
-				this.FilterMode = (eTexFilterMode)reader.ReadUInt32();
-			}
-			if (file.Version >= eNifVersion.VER_20_1_0_3)
-			{
-				this.Flags = reader.ReadUInt16();
-			}
-			if (file.Version <= eNifVersion.VER_20_0_0_5)
-			{
-				this.UVSetIndex = reader.ReadUInt32();
-			}
-			if (file.Version <= eNifVersion.VER_10_4_0_1)
-			{
-				this.PS2L = reader.ReadInt16();
-				this.PS2K = reader.ReadInt16();
-			}
-			if (file.Version <= eNifVersion.VER_4_1_0_12)
-			{
-				reader.ReadUInt16();
-			}
-			if (file.Version >= eNifVersion.VER_10_1_0_0)
-			{
-				this.HasTextureTransform = reader.ReadBoolean(file.Version);
-				if (this.HasTextureTransform)
-				{
-					this.Translation = reader.ReadVector2();
-					this.Tiling = reader.ReadVector2();
-					this.WRotation = reader.ReadSingle();
-					this.TransformType = reader.ReadUInt32();
-					this.CenterOffset = reader.ReadVector2();
-				}
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TexDesc"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public TexDesc(NiFile file, BinaryReader reader)
+    {
+        this.Source = new NiRef<NiSourceTexture>(reader);
+        if (file.Version <= eNifVersion.VER_20_0_0_5)
+        {
+            this.ClampMode = (eTexClampMode)reader.ReadUInt32();
+            this.FilterMode = (eTexFilterMode)reader.ReadUInt32();
+        }
+        if (file.Version >= eNifVersion.VER_20_1_0_3)
+        {
+            this.Flags = reader.ReadUInt16();
+        }
+        if (file.Version <= eNifVersion.VER_20_0_0_5)
+        {
+            this.UVSetIndex = reader.ReadUInt32();
+        }
+        if (file.Version <= eNifVersion.VER_10_4_0_1)
+        {
+            this.PS2L = reader.ReadInt16();
+            this.PS2K = reader.ReadInt16();
+        }
+        if (file.Version <= eNifVersion.VER_4_1_0_12)
+        {
+            reader.ReadUInt16();
+        }
+        if (file.Version >= eNifVersion.VER_10_1_0_0)
+        {
+            this.HasTextureTransform = reader.ReadBoolean(file.Version);
+            if (this.HasTextureTransform)
+            {
+                this.Translation = reader.ReadVector2();
+                this.Tiling = reader.ReadVector2();
+                this.WRotation = reader.ReadSingle();
+                this.TransformType = reader.ReadUInt32();
+                this.CenterOffset = reader.ReadVector2();
+            }
+        }
+    }
 }

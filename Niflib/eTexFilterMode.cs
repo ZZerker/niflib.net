@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eTexFilterMode
+/// </summary>
+public enum eTexFilterMode : uint
+{
     /// <summary>
-    /// Enum eTexFilterMode
+    /// The filte r_ nearest
     /// </summary>
-    public enum eTexFilterMode : uint
-	{
-        /// <summary>
-        /// The filte r_ nearest
-        /// </summary>
-        FILTER_NEAREST,
-        /// <summary>
-        /// The filte r_ bilerp
-        /// </summary>
-        FILTER_BILERP,
-        /// <summary>
-        /// The filte r_ trilerp
-        /// </summary>
-        FILTER_TRILERP,
-        /// <summary>
-        /// The filte r_ neares t_ mipnearest
-        /// </summary>
-        FILTER_NEAREST_MIPNEAREST,
-        /// <summary>
-        /// The filte r_ neares t_ miplerp
-        /// </summary>
-        FILTER_NEAREST_MIPLERP,
-        /// <summary>
-        /// The filte r_ biler p_ mipnearest
-        /// </summary>
-        FILTER_BILERP_MIPNEAREST
-    }
+    FILTER_NEAREST,
+    /// <summary>
+    /// The filte r_ bilerp
+    /// </summary>
+    FILTER_BILERP,
+    /// <summary>
+    /// The filte r_ trilerp
+    /// </summary>
+    FILTER_TRILERP,
+    /// <summary>
+    /// The filte r_ neares t_ mipnearest
+    /// </summary>
+    FILTER_NEAREST_MIPNEAREST,
+    /// <summary>
+    /// The filte r_ neares t_ miplerp
+    /// </summary>
+    FILTER_NEAREST_MIPLERP,
+    /// <summary>
+    /// The filte r_ biler p_ mipnearest
+    /// </summary>
+    FILTER_BILERP_MIPNEAREST
 }

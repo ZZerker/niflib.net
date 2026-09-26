@@ -17,41 +17,40 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class MipMap.
+/// </summary>
+public class MipMap
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The width
+    /// </summary>
+    public uint Width;
 
     /// <summary>
-    /// Class MipMap.
+    /// The height
     /// </summary>
-    public class MipMap
-	{
-        /// <summary>
-        /// The width
-        /// </summary>
-        public uint Width;
+    public uint Height;
 
-        /// <summary>
-        /// The height
-        /// </summary>
-        public uint Height;
+    /// <summary>
+    /// The offset
+    /// </summary>
+    public uint Offset;
 
-        /// <summary>
-        /// The offset
-        /// </summary>
-        public uint Offset;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MipMap"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public MipMap(NiFile file, BinaryReader reader)
-		{
-			this.Width = reader.ReadUInt32();
-			this.Height = reader.ReadUInt32();
-			this.Offset = reader.ReadUInt32();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MipMap"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public MipMap(NiFile file, BinaryReader reader)
+    {
+        this.Width = reader.ReadUInt32();
+        this.Height = reader.ReadUInt32();
+        this.Offset = reader.ReadUInt32();
+    }
 }

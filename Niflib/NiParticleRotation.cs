@@ -17,42 +17,41 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticleRotation.
+/// </summary>
+public class NiParticleRotation : NiParticleModifier
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The random inital axis
+    /// </summary>
+    public bool RandomInitalAxis;
 
     /// <summary>
-    /// Class NiParticleRotation.
+    /// The initial axis
     /// </summary>
-    public class NiParticleRotation : NiParticleModifier
-	{
-        /// <summary>
-        /// The random inital axis
-        /// </summary>
-        public bool RandomInitalAxis;
+    public Vector3 InitialAxis;
 
-        /// <summary>
-        /// The initial axis
-        /// </summary>
-        public Vector3 InitialAxis;
+    /// <summary>
+    /// The speed
+    /// </summary>
+    public float Speed;
 
-        /// <summary>
-        /// The speed
-        /// </summary>
-        public float Speed;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleRotation"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticleRotation(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.RandomInitalAxis = reader.ReadBoolean(Version);
-			this.InitialAxis = reader.ReadVector3();
-			this.Speed = reader.ReadSingle();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiParticleRotation"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticleRotation(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.RandomInitalAxis = reader.ReadBoolean(Version);
+        this.InitialAxis = reader.ReadVector3();
+        this.Speed = reader.ReadSingle();
+    }
 }

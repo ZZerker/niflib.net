@@ -17,82 +17,81 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiKeyframeData.
+/// </summary>
+public class NiKeyframeData : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The key type
+    /// </summary>
+    public eKeyType KeyType;
 
     /// <summary>
-    /// Class NiKeyframeData.
+    /// The quaternion keys
     /// </summary>
-    public class NiKeyframeData : NiObject
-	{
-        /// <summary>
-        /// The key type
-        /// </summary>
-        public eKeyType KeyType;
+    public QuatKey[] QuaternionKeys;
 
-        /// <summary>
-        /// The quaternion keys
-        /// </summary>
-        public QuatKey[] QuaternionKeys;
+    /// <summary>
+    /// The unkown float
+    /// </summary>
+    public float UnkownFloat;
 
-        /// <summary>
-        /// The unkown float
-        /// </summary>
-        public float UnkownFloat;
+    /// <summary>
+    /// The rotations
+    /// </summary>
+    public KeyGroup<FloatKey>[] Rotations;
 
-        /// <summary>
-        /// The rotations
-        /// </summary>
-        public KeyGroup<FloatKey>[] Rotations;
+    /// <summary>
+    /// The translations
+    /// </summary>
+    public KeyGroup<VecKey> Translations;
 
-        /// <summary>
-        /// The translations
-        /// </summary>
-        public KeyGroup<VecKey> Translations;
+    /// <summary>
+    /// The scales
+    /// </summary>
+    public KeyGroup<FloatKey> Scales;
 
-        /// <summary>
-        /// The scales
-        /// </summary>
-        public KeyGroup<FloatKey> Scales;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiKeyframeData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiKeyframeData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			uint num = reader.ReadUInt32();
-			if (num != 0u)
-			{
-				this.KeyType = (eKeyType)reader.ReadUInt32();
-			}
-			if (this.KeyType != eKeyType.XYZ_ROTATION_KEY)
-			{
-				this.QuaternionKeys = new QuatKey[num];
-				int num2 = 0;
-				while ((long)num2 < (long)((ulong)num))
-				{
-					this.QuaternionKeys[num2] = new QuatKey(reader, this.KeyType);
-					num2++;
-				}
-			}
-			if (base.Version <= eNifVersion.VER_10_1_0_0 && this.KeyType == eKeyType.XYZ_ROTATION_KEY)
-			{
-				this.UnkownFloat = reader.ReadSingle();
-			}
-			if (this.KeyType == eKeyType.XYZ_ROTATION_KEY)
-			{
-				this.Rotations = new KeyGroup<FloatKey>[3];
-				for (int i = 0; i < 3; i++)
-				{
-					this.Rotations[i] = new KeyGroup<FloatKey>(reader);
-				}
-			}
-			this.Translations = new KeyGroup<VecKey>(reader);
-			this.Scales = new KeyGroup<FloatKey>(reader);
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiKeyframeData" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiKeyframeData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        uint num = reader.ReadUInt32();
+        if (num != 0u)
+        {
+            this.KeyType = (eKeyType)reader.ReadUInt32();
+        }
+        if (this.KeyType != eKeyType.XYZ_ROTATION_KEY)
+        {
+            this.QuaternionKeys = new QuatKey[num];
+            int num2 = 0;
+            while ((long)num2 < (long)((ulong)num))
+            {
+                this.QuaternionKeys[num2] = new QuatKey(reader, this.KeyType);
+                num2++;
+            }
+        }
+        if (base.Version <= eNifVersion.VER_10_1_0_0 && this.KeyType == eKeyType.XYZ_ROTATION_KEY)
+        {
+            this.UnkownFloat = reader.ReadSingle();
+        }
+        if (this.KeyType == eKeyType.XYZ_ROTATION_KEY)
+        {
+            this.Rotations = new KeyGroup<FloatKey>[3];
+            for (int i = 0; i < 3; i++)
+            {
+                this.Rotations[i] = new KeyGroup<FloatKey>(reader);
+            }
+        }
+        this.Translations = new KeyGroup<VecKey>(reader);
+        this.Scales = new KeyGroup<FloatKey>(reader);
+    }
 }

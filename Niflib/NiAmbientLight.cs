@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiAmbientLight.
+/// </summary>
+public class NiAmbientLight : NiLight
+{
     /// <summary>
-    /// Class NiAmbientLight.
+    /// Initializes a new instance of the <see cref="NiAmbientLight" /> class.
     /// </summary>
-    public class NiAmbientLight : NiLight
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiAmbientLight" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiAmbientLight(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiAmbientLight(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

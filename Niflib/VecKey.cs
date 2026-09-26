@@ -17,70 +17,69 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class VecKey.
+/// </summary>
+public class VecKey : BaseKey
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The time
+    /// </summary>
+    public float Time;
 
     /// <summary>
-    /// Class VecKey.
+    /// The value
     /// </summary>
-    public class VecKey : BaseKey
-	{
-        /// <summary>
-        /// The time
-        /// </summary>
-        public float Time;
+    public Vector3 Value;
 
-        /// <summary>
-        /// The value
-        /// </summary>
-        public Vector3 Value;
+    /// <summary>
+    /// The forward
+    /// </summary>
+    public Vector3 Forward;
 
-        /// <summary>
-        /// The forward
-        /// </summary>
-        public Vector3 Forward;
+    /// <summary>
+    /// The backward
+    /// </summary>
+    public Vector3 Backward;
 
-        /// <summary>
-        /// The backward
-        /// </summary>
-        public Vector3 Backward;
+    /// <summary>
+    /// The TBC
+    /// </summary>
+    public Vector3 TBC;
 
-        /// <summary>
-        /// The TBC
-        /// </summary>
-        public Vector3 TBC;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="VecKey"/> class.
-        /// </summary>
-        /// <param name="reader">The reader.</param>
-        /// <param name="type">The type.</param>
-        /// <exception cref="Exception">Invalid eKeyType!</exception>
-        public VecKey(BinaryReader reader, eKeyType type) : base(reader, type)
-		{
-			this.Time = reader.ReadSingle();
-			if (type < eKeyType.LINEAR_KEY || type > eKeyType.TBC_KEY)
-			{
-				throw new Exception("Invalid eKeyType!");
-			}
-			if (type == eKeyType.LINEAR_KEY)
-			{
-				this.Value = reader.ReadVector3();
-			}
-			if (type == eKeyType.QUADRATIC_KEY)
-			{
-				this.Value = reader.ReadVector3();
-				this.Forward = reader.ReadVector3();
-				this.Backward = reader.ReadVector3();
-			}
-			if (type == eKeyType.TBC_KEY)
-			{
-				this.Value = reader.ReadVector3();
-				this.TBC = reader.ReadVector3();
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="VecKey"/> class.
+    /// </summary>
+    /// <param name="reader">The reader.</param>
+    /// <param name="type">The type.</param>
+    /// <exception cref="Exception">Invalid eKeyType!</exception>
+    public VecKey(BinaryReader reader, eKeyType type) : base(reader, type)
+    {
+        this.Time = reader.ReadSingle();
+        if (type < eKeyType.LINEAR_KEY || type > eKeyType.TBC_KEY)
+        {
+            throw new Exception("Invalid eKeyType!");
+        }
+        if (type == eKeyType.LINEAR_KEY)
+        {
+            this.Value = reader.ReadVector3();
+        }
+        if (type == eKeyType.QUADRATIC_KEY)
+        {
+            this.Value = reader.ReadVector3();
+            this.Forward = reader.ReadVector3();
+            this.Backward = reader.ReadVector3();
+        }
+        if (type == eKeyType.TBC_KEY)
+        {
+            this.Value = reader.ReadVector3();
+            this.TBC = reader.ReadVector3();
+        }
+    }
 }

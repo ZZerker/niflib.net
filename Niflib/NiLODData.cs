@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiLODData.
+/// </summary>
+public class NiLODData : NiObject
+{
     /// <summary>
-    /// Class NiLODData.
+    /// Initializes a new instance of the <see cref="NiLODData" /> class.
     /// </summary>
-    public class NiLODData : NiObject
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiLODData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiLODData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiLODData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

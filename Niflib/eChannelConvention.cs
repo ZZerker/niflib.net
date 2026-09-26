@@ -17,30 +17,29 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eChannelConvention
+/// </summary>
+public enum eChannelConvention : uint
+{
     /// <summary>
-    /// Enum eChannelConvention
+    /// The c c_ fixed
     /// </summary>
-    public enum eChannelConvention : uint
-	{
-        /// <summary>
-        /// The c c_ fixed
-        /// </summary>
-        CC_FIXED,
-        /// <summary>
-        /// The c c_ index
-        /// </summary>
-        CC_INDEX = 3u,
-        /// <summary>
-        /// The c c_ compressed
-        /// </summary>
-        CC_COMPRESSED,
-        /// <summary>
-        /// The c c_ empty
-        /// </summary>
-        CC_EMPTY
-    }
+    CC_FIXED,
+    /// <summary>
+    /// The c c_ index
+    /// </summary>
+    CC_INDEX = 3u,
+    /// <summary>
+    /// The c c_ compressed
+    /// </summary>
+    CC_COMPRESSED,
+    /// <summary>
+    /// The c c_ empty
+    /// </summary>
+    CC_EMPTY
 }

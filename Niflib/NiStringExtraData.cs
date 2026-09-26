@@ -17,38 +17,37 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiStringExtraData.
+/// </summary>
+public class NiStringExtraData : NiExtraData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The bytes remaining
+    /// </summary>
+    public uint BytesRemaining;
 
     /// <summary>
-    /// Class NiStringExtraData.
+    /// The string data
     /// </summary>
-    public class NiStringExtraData : NiExtraData
-	{
-        /// <summary>
-        /// The bytes remaining
-        /// </summary>
-        public uint BytesRemaining;
+    public NiString StringData;
 
-        /// <summary>
-        /// The string data
-        /// </summary>
-        public NiString StringData;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiStringExtraData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiStringExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (base.Version <= eNifVersion.VER_4_2_2_0)
-			{
-				this.BytesRemaining = reader.ReadUInt32();
-			}
-			this.StringData = new NiString(file, reader);
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiStringExtraData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiStringExtraData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (base.Version <= eNifVersion.VER_4_2_2_0)
+        {
+            this.BytesRemaining = reader.ReadUInt32();
+        }
+        this.StringData = new NiString(file, reader);
+    }
 }

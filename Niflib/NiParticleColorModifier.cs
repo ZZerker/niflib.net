@@ -17,29 +17,28 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiParticleColorModifier.
+/// </summary>
+public class NiParticleColorModifier : NiParticleModifier
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public NiRef<NiColorData> Data;
 
     /// <summary>
-    /// Class NiParticleColorModifier.
+    /// Initializes a new instance of the <see cref="NiParticleColorModifier" /> class.
     /// </summary>
-    public class NiParticleColorModifier : NiParticleModifier
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiColorData> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleColorModifier" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiParticleColorModifier(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = new NiRef<NiColorData>(reader);
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiParticleColorModifier(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = new NiRef<NiColorData>(reader);
+    }
 }

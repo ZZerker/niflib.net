@@ -17,48 +17,47 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiLight.
+/// </summary>
+public class NiLight : NiDynamicEffect
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The dimmer
+    /// </summary>
+    public float Dimmer;
 
     /// <summary>
-    /// Class NiLight.
+    /// The ambient color
     /// </summary>
-    public class NiLight : NiDynamicEffect
-	{
-        /// <summary>
-        /// The dimmer
-        /// </summary>
-        public float Dimmer;
+    public Color3 AmbientColor;
 
-        /// <summary>
-        /// The ambient color
-        /// </summary>
-        public Color3 AmbientColor;
+    /// <summary>
+    /// The diffuse color
+    /// </summary>
+    public Color3 DiffuseColor;
 
-        /// <summary>
-        /// The diffuse color
-        /// </summary>
-        public Color3 DiffuseColor;
+    /// <summary>
+    /// The specular color
+    /// </summary>
+    public Color3 SpecularColor;
 
-        /// <summary>
-        /// The specular color
-        /// </summary>
-        public Color3 SpecularColor;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiLight"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiLight(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Dimmer = reader.ReadSingle();
-			this.AmbientColor = reader.ReadColor3();
-			this.DiffuseColor = reader.ReadColor3();
-			this.SpecularColor = reader.ReadColor3();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiLight"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiLight(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Dimmer = reader.ReadSingle();
+        this.AmbientColor = reader.ReadColor3();
+        this.DiffuseColor = reader.ReadColor3();
+        this.SpecularColor = reader.ReadColor3();
+    }
 }

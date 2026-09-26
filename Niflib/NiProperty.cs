@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiProperty.
+/// </summary>
+public class NiProperty : NiObjectNET
+{
     /// <summary>
-    /// Class NiProperty.
+    /// Initializes a new instance of the <see cref="NiProperty"/> class.
     /// </summary>
-    public class NiProperty : NiObjectNET
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiProperty"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

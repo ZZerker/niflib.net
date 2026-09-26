@@ -17,62 +17,61 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eTexType
+/// </summary>
+public enum eTexType : uint
+{
     /// <summary>
-    /// Enum eTexType
+    /// The bas e_ map
     /// </summary>
-    public enum eTexType : uint
-	{
-        /// <summary>
-        /// The bas e_ map
-        /// </summary>
-        BASE_MAP,
-        /// <summary>
-        /// The dar k_ map
-        /// </summary>
-        DARK_MAP,
-        /// <summary>
-        /// The detai l_ map
-        /// </summary>
-        DETAIL_MAP,
-        /// <summary>
-        /// The glos s_ map
-        /// </summary>
-        GLOSS_MAP,
-        /// <summary>
-        /// The glo w_ map
-        /// </summary>
-        GLOW_MAP,
-        /// <summary>
-        /// The bum p_ map
-        /// </summary>
-        BUMP_MAP,
-        /// <summary>
-        /// The norma l_ map
-        /// </summary>
-        NORMAL_MAP,
-        /// <summary>
-        /// The unknow N2_ map
-        /// </summary>
-        UNKNOWN2_MAP,
-        /// <summary>
-        /// The deca L_0_ map
-        /// </summary>
-        DECAL_0_MAP,
-        /// <summary>
-        /// The deca L_1_ map
-        /// </summary>
-        DECAL_1_MAP,
-        /// <summary>
-        /// The deca L_2_ map
-        /// </summary>
-        DECAL_2_MAP,
-        /// <summary>
-        /// The deca L_3_ map
-        /// </summary>
-        DECAL_3_MAP
-    }
+    BASE_MAP,
+    /// <summary>
+    /// The dar k_ map
+    /// </summary>
+    DARK_MAP,
+    /// <summary>
+    /// The detai l_ map
+    /// </summary>
+    DETAIL_MAP,
+    /// <summary>
+    /// The glos s_ map
+    /// </summary>
+    GLOSS_MAP,
+    /// <summary>
+    /// The glo w_ map
+    /// </summary>
+    GLOW_MAP,
+    /// <summary>
+    /// The bum p_ map
+    /// </summary>
+    BUMP_MAP,
+    /// <summary>
+    /// The norma l_ map
+    /// </summary>
+    NORMAL_MAP,
+    /// <summary>
+    /// The unknow N2_ map
+    /// </summary>
+    UNKNOWN2_MAP,
+    /// <summary>
+    /// The deca L_0_ map
+    /// </summary>
+    DECAL_0_MAP,
+    /// <summary>
+    /// The deca L_1_ map
+    /// </summary>
+    DECAL_1_MAP,
+    /// <summary>
+    /// The deca L_2_ map
+    /// </summary>
+    DECAL_2_MAP,
+    /// <summary>
+    /// The deca L_3_ map
+    /// </summary>
+    DECAL_3_MAP
 }

@@ -17,33 +17,32 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiStringsExtraData.
+/// </summary>
+public class NiStringsExtraData : NiExtraData
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The extra string data
+    /// </summary>
+    public NiString[] ExtraStringData;
 
     /// <summary>
-    /// Class NiStringsExtraData.
+    /// Initializes a new instance of the <see cref="NiStringsExtraData"/> class.
     /// </summary>
-    public class NiStringsExtraData : NiExtraData
-	{
-        /// <summary>
-        /// The extra string data
-        /// </summary>
-        public NiString[] ExtraStringData;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiStringsExtraData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiStringsExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.ExtraStringData = new NiString[reader.ReadUInt32()];
-			for (int i = 0; i < this.ExtraStringData.Length; i++)
-			{
-				this.ExtraStringData[i] = new NiString(file, reader);
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiStringsExtraData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.ExtraStringData = new NiString[reader.ReadUInt32()];
+        for (int i = 0; i < this.ExtraStringData.Length; i++)
+        {
+            this.ExtraStringData[i] = new NiString(file, reader);
+        }
+    }
 }

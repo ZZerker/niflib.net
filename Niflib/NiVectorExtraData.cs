@@ -17,36 +17,35 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiVectorExtraData.
+/// </summary>
+public class NiVectorExtraData : NiExtraData
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public Vector3 Data;
 
     /// <summary>
-    /// Class NiVectorExtraData.
+    /// The unkown float
     /// </summary>
-    public class NiVectorExtraData : NiExtraData
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public Vector3 Data;
+    public float UnkownFloat;
 
-        /// <summary>
-        /// The unkown float
-        /// </summary>
-        public float UnkownFloat;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiVectorExtraData"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiVectorExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Data = reader.ReadVector3();
-			this.UnkownFloat = reader.ReadSingle();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiVectorExtraData"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiVectorExtraData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Data = reader.ReadVector3();
+        this.UnkownFloat = reader.ReadSingle();
+    }
 }

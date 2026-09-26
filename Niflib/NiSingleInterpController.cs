@@ -17,32 +17,31 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiSingleInterpController.
+/// </summary>
+public class NiSingleInterpController : NiInterpController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The interpolator
+    /// </summary>
+    public NiRef<NiInterpolator> Interpolator;
 
     /// <summary>
-    /// Class NiSingleInterpController.
+    /// Initializes a new instance of the <see cref="NiSingleInterpController"/> class.
     /// </summary>
-    public class NiSingleInterpController : NiInterpController
-	{
-        /// <summary>
-        /// The interpolator
-        /// </summary>
-        public NiRef<NiInterpolator> Interpolator;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiSingleInterpController"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiSingleInterpController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (base.Version >= eNifVersion.VER_10_2_0_0)
-			{
-				this.Interpolator = new NiRef<NiInterpolator>(reader);
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiSingleInterpController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (base.Version >= eNifVersion.VER_10_2_0_0)
+        {
+            this.Interpolator = new NiRef<NiInterpolator>(reader);
+        }
+    }
 }

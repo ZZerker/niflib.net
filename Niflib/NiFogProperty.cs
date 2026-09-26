@@ -17,42 +17,41 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiFogProperty.
+/// </summary>
+public class NiFogProperty : NiProperty
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The flags
+    /// </summary>
+    public ushort Flags;
 
     /// <summary>
-    /// Class NiFogProperty.
+    /// The depth
     /// </summary>
-    public class NiFogProperty : NiProperty
-	{
-        /// <summary>
-        /// The flags
-        /// </summary>
-        public ushort Flags;
+    public float Depth;
 
-        /// <summary>
-        /// The depth
-        /// </summary>
-        public float Depth;
+    /// <summary>
+    /// The color
+    /// </summary>
+    public Color3 Color;
 
-        /// <summary>
-        /// The color
-        /// </summary>
-        public Color3 Color;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiFogProperty" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiFogProperty(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			this.Flags = reader.ReadUInt16();
-			this.Depth = reader.ReadSingle();
-			this.Color = reader.ReadColor3();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiFogProperty" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiFogProperty(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        this.Flags = reader.ReadUInt16();
+        this.Depth = reader.ReadSingle();
+        this.Color = reader.ReadColor3();
+    }
 }

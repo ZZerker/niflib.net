@@ -17,35 +17,34 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class SkinWeight.
+/// </summary>
+public class SkinWeight
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The index
+    /// </summary>
+    public ushort Index;
 
     /// <summary>
-    /// Class SkinWeight.
+    /// The weight
     /// </summary>
-    public class SkinWeight
-	{
-        /// <summary>
-        /// The index
-        /// </summary>
-        public ushort Index;
+    public float Weight;
 
-        /// <summary>
-        /// The weight
-        /// </summary>
-        public float Weight;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SkinWeight"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public SkinWeight(NiFile file, BinaryReader reader)
-		{
-			this.Index = reader.ReadUInt16();
-			this.Weight = reader.ReadSingle();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SkinWeight"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public SkinWeight(NiFile file, BinaryReader reader)
+    {
+        this.Index = reader.ReadUInt16();
+        this.Weight = reader.ReadSingle();
+    }
 }

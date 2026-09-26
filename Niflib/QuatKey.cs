@@ -17,50 +17,49 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class QuatKey.
+/// </summary>
+public class QuatKey
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The time
+    /// </summary>
+    public float Time;
 
     /// <summary>
-    /// Class QuatKey.
+    /// The value
     /// </summary>
-    public class QuatKey
-	{
-        /// <summary>
-        /// The time
-        /// </summary>
-        public float Time;
+    public Vector4 Value;
 
-        /// <summary>
-        /// The value
-        /// </summary>
-        public Vector4 Value;
+    /// <summary>
+    /// The TBC
+    /// </summary>
+    public Vector3 TBC;
 
-        /// <summary>
-        /// The TBC
-        /// </summary>
-        public Vector3 TBC;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="QuatKey"/> class.
-        /// </summary>
-        /// <param name="reader">The reader.</param>
-        /// <param name="type">The type.</param>
-        /// <exception cref="Exception">Invalid eKeyType</exception>
-        public QuatKey(BinaryReader reader, eKeyType type)
-		{
-			this.Time = reader.ReadSingle();
-			if (type < eKeyType.LINEAR_KEY || type > eKeyType.TBC_KEY)
-			{
-				throw new Exception("Invalid eKeyType");
-			}
-			this.Value = reader.ReadVector4();
-			if (type == eKeyType.TBC_KEY)
-			{
-				this.TBC = reader.ReadVector3();
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="QuatKey"/> class.
+    /// </summary>
+    /// <param name="reader">The reader.</param>
+    /// <param name="type">The type.</param>
+    /// <exception cref="Exception">Invalid eKeyType</exception>
+    public QuatKey(BinaryReader reader, eKeyType type)
+    {
+        this.Time = reader.ReadSingle();
+        if (type < eKeyType.LINEAR_KEY || type > eKeyType.TBC_KEY)
+        {
+            throw new Exception("Invalid eKeyType");
+        }
+        this.Value = reader.ReadVector4();
+        if (type == eKeyType.TBC_KEY)
+        {
+            this.TBC = reader.ReadVector3();
+        }
+    }
 }

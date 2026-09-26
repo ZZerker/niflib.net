@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class BaseKey.
+/// </summary>
+public class BaseKey
+{
     /// <summary>
-    /// Class BaseKey.
+    /// Initializes a new instance of the <see cref="BaseKey"/> class.
     /// </summary>
-    public class BaseKey
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseKey"/> class.
-        /// </summary>
-        /// <param name="reader">The reader.</param>
-        /// <param name="type">The type.</param>
-        public BaseKey(BinaryReader reader, eKeyType type)
-		{
-		}
-	}
+    /// <param name="reader">The reader.</param>
+    /// <param name="type">The type.</param>
+    public BaseKey(BinaryReader reader, eKeyType type)
+    {
+    }
 }

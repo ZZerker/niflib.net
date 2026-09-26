@@ -17,39 +17,38 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiFooter.
+/// </summary>
+public class NiFooter
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The root nodes
+    /// </summary>
+    public NiRef<NiObject>[] RootNodes;
 
     /// <summary>
-    /// Class NiFooter.
+    /// Initializes a new instance of the <see cref="NiFooter"/> class.
     /// </summary>
-    public class NiFooter
-	{
-        /// <summary>
-        /// The root nodes
-        /// </summary>
-        public NiRef<NiObject>[] RootNodes;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiFooter"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiFooter(NiFile file, BinaryReader reader)
-		{
-			if (file.Header.Version >= eNifVersion.VER_3_3_0_13)
-			{
-				uint num = reader.ReadUInt32();
-				this.RootNodes = new NiRef<NiObject>[num];
-				int num2 = 0;
-				while ((long)num2 < (long)((ulong)num))
-				{
-					this.RootNodes[num2] = new NiRef<NiObject>(reader.ReadUInt32());
-					num2++;
-				}
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiFooter(NiFile file, BinaryReader reader)
+    {
+        if (file.Header.Version >= eNifVersion.VER_3_3_0_13)
+        {
+            uint num = reader.ReadUInt32();
+            this.RootNodes = new NiRef<NiObject>[num];
+            int num2 = 0;
+            while ((long)num2 < (long)((ulong)num))
+            {
+                this.RootNodes[num2] = new NiRef<NiObject>(reader.ReadUInt32());
+                num2++;
+            }
+        }
+    }
 }

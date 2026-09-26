@@ -17,46 +17,45 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class KeyGroup.
+/// </summary>
+/// <typeparam name="T">BaseKey</typeparam>
+public class KeyGroup<T> where T : BaseKey
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The interpolation
+    /// </summary>
+    public eKeyType Interpolation;
 
     /// <summary>
-    /// Class KeyGroup.
+    /// The values
     /// </summary>
-    /// <typeparam name="T">BaseKey</typeparam>
-    public class KeyGroup<T> where T : BaseKey
-	{
-        /// <summary>
-        /// The interpolation
-        /// </summary>
-        public eKeyType Interpolation;
+    public T[] Values;
 
-        /// <summary>
-        /// The values
-        /// </summary>
-        public T[] Values;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KeyGroup{T}"/> class.
-        /// </summary>
-        /// <param name="reader">The reader.</param>
-        public KeyGroup(BinaryReader reader)
-		{
-			this.Values = new T[reader.ReadUInt32()];
-			if (this.Values.Length != 0)
-			{
-				this.Interpolation = (eKeyType)reader.ReadUInt32();
-			}
-			for (int i = 0; i < this.Values.Length; i++)
-			{
-				this.Values[i] = (T)((object)Activator.CreateInstance(typeof(T), new object[]
-				{
-					reader,
-					this.Interpolation
-				}));
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="KeyGroup{T}"/> class.
+    /// </summary>
+    /// <param name="reader">The reader.</param>
+    public KeyGroup(BinaryReader reader)
+    {
+        this.Values = new T[reader.ReadUInt32()];
+        if (this.Values.Length != 0)
+        {
+            this.Interpolation = (eKeyType)reader.ReadUInt32();
+        }
+        for (int i = 0; i < this.Values.Length; i++)
+        {
+            this.Values[i] = (T)((object)Activator.CreateInstance(typeof(T), new object[]
+            {
+                reader,
+                this.Interpolation
+            }));
+        }
+    }
 }

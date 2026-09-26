@@ -17,23 +17,22 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
-	using System.IO;
+using System;
+using System.IO;
 
+namespace Niflib;
+
+/// <summary>
+/// Class NiTriShape.
+/// </summary>
+public class NiTriShape : NiTriBasedGeometry
+{
     /// <summary>
-    /// Class NiTriShape.
+    /// Initializes a new instance of the <see cref="NiTriShape"/> class.
     /// </summary>
-    public class NiTriShape : NiTriBasedGeometry
-	{
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiTriShape"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiTriShape(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiTriShape(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+    }
 }

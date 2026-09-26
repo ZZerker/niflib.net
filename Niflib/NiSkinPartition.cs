@@ -17,36 +17,35 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiSkinPartition.
+/// </summary>
+public class NiSkinPartition : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The partitions
+    /// </summary>
+    public SkinPartition[] Partitions;
 
     /// <summary>
-    /// Class NiSkinPartition.
+    /// Initializes a new instance of the <see cref="NiSkinPartition"/> class.
     /// </summary>
-    public class NiSkinPartition : NiObject
-	{
-        /// <summary>
-        /// The partitions
-        /// </summary>
-        public SkinPartition[] Partitions;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiSkinPartition"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiSkinPartition(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			uint num = reader.ReadUInt32();
-			this.Partitions = new SkinPartition[num];
-			int num2 = 0;
-			while ((long)num2 < (long)((ulong)num))
-			{
-				this.Partitions[num2] = new SkinPartition(file, reader);
-				num2++;
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiSkinPartition(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        uint num = reader.ReadUInt32();
+        this.Partitions = new SkinPartition[num];
+        int num2 = 0;
+        while ((long)num2 < (long)((ulong)num))
+        {
+            this.Partitions[num2] = new SkinPartition(file, reader);
+            num2++;
+        }
+    }
 }

@@ -17,42 +17,41 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class SkinTransform.
+/// </summary>
+public class SkinTransform
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The rotation
+    /// </summary>
+    public Matrix4x4 Rotation;
 
     /// <summary>
-    /// Class SkinTransform.
+    /// The translation
     /// </summary>
-    public class SkinTransform
-	{
-        /// <summary>
-        /// The rotation
-        /// </summary>
-        public Matrix4x4 Rotation;
+    public Vector3 Translation;
 
-        /// <summary>
-        /// The translation
-        /// </summary>
-        public Vector3 Translation;
+    /// <summary>
+    /// The scale
+    /// </summary>
+    public float Scale;
 
-        /// <summary>
-        /// The scale
-        /// </summary>
-        public float Scale;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SkinTransform"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public SkinTransform(NiFile file, BinaryReader reader)
-		{
-			this.Rotation = reader.ReadMatrix33();
-			this.Translation = reader.ReadVector3();
-			this.Scale = reader.ReadSingle();
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SkinTransform"/> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public SkinTransform(NiFile file, BinaryReader reader)
+    {
+        this.Rotation = reader.ReadMatrix33();
+        this.Translation = reader.ReadVector3();
+        this.Scale = reader.ReadSingle();
+    }
 }

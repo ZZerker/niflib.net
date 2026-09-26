@@ -17,50 +17,49 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+using System.Numerics;
+
+namespace Niflib;
+
+/// <summary>
+/// Class ByteKey.
+/// </summary>
+public class ByteKey
 {
-	using System.Numerics;
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The time
+    /// </summary>
+    public float Time;
 
     /// <summary>
-    /// Class ByteKey.
+    /// The value
     /// </summary>
-    public class ByteKey
-	{
-        /// <summary>
-        /// The time
-        /// </summary>
-        public float Time;
+    public byte Value;
 
-        /// <summary>
-        /// The value
-        /// </summary>
-        public byte Value;
+    /// <summary>
+    /// The TBC
+    /// </summary>
+    public Vector3 TBC;
 
-        /// <summary>
-        /// The TBC
-        /// </summary>
-        public Vector3 TBC;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ByteKey"/> class.
-        /// </summary>
-        /// <param name="reader">The reader.</param>
-        /// <param name="type">The type.</param>
-        /// <exception cref="Exception">Invalid eKeyType</exception>
-        public ByteKey(BinaryReader reader, eKeyType type)
-		{
-			this.Time = reader.ReadSingle();
-			if (type != eKeyType.LINEAR_KEY)
-			{
-				throw new Exception("Invalid eKeyType");
-			}
-			this.Value = reader.ReadByte();
-			if (type == eKeyType.TBC_KEY)
-			{
-				this.TBC = reader.ReadVector3();
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ByteKey"/> class.
+    /// </summary>
+    /// <param name="reader">The reader.</param>
+    /// <param name="type">The type.</param>
+    /// <exception cref="Exception">Invalid eKeyType</exception>
+    public ByteKey(BinaryReader reader, eKeyType type)
+    {
+        this.Time = reader.ReadSingle();
+        if (type != eKeyType.LINEAR_KEY)
+        {
+            throw new Exception("Invalid eKeyType");
+        }
+        this.Value = reader.ReadByte();
+        if (type == eKeyType.TBC_KEY)
+        {
+            this.TBC = reader.ReadVector3();
+        }
+    }
 }

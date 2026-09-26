@@ -17,41 +17,40 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiExtraData.
+/// </summary>
+public class NiExtraData : NiObject
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The name
+    /// </summary>
+    public NiString Name;
 
     /// <summary>
-    /// Class NiExtraData.
+    /// The next extra data
     /// </summary>
-    public class NiExtraData : NiObject
-	{
-        /// <summary>
-        /// The name
-        /// </summary>
-        public NiString Name;
+    public NiRef<NiExtraData> NextExtraData;
 
-        /// <summary>
-        /// The next extra data
-        /// </summary>
-        public NiRef<NiExtraData> NextExtraData;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiExtraData" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiExtraData(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version >= eNifVersion.VER_10_0_1_0)
-			{
-				this.Name = new NiString(file, reader);
-			}
-			if (this.File.Header.Version <= eNifVersion.VER_4_2_2_0)
-			{
-				this.NextExtraData = new NiRef<NiExtraData>(reader.ReadUInt32());
-			}
-		}
-	}
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NiExtraData" /> class.
+    /// </summary>
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiExtraData(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version >= eNifVersion.VER_10_0_1_0)
+        {
+            this.Name = new NiString(file, reader);
+        }
+        if (this.File.Header.Version <= eNifVersion.VER_4_2_2_0)
+        {
+            this.NextExtraData = new NiRef<NiExtraData>(reader.ReadUInt32());
+        }
+    }
 }

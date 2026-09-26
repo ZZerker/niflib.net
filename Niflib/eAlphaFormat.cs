@@ -17,30 +17,29 @@
  *
  */
 
-namespace Niflib
-{
-	using System;
+using System;
 
+namespace Niflib;
+
+/// <summary>
+/// Enum eAlphaFormat
+/// </summary>
+public enum eAlphaFormat : uint
+{
     /// <summary>
-    /// Enum eAlphaFormat
+    /// The alph a_ none
     /// </summary>
-    public enum eAlphaFormat : uint
-	{
-        /// <summary>
-        /// The alph a_ none
-        /// </summary>
-        ALPHA_NONE,
-        /// <summary>
-        /// The alph a_ binary
-        /// </summary>
-        ALPHA_BINARY,
-        /// <summary>
-        /// The alph a_ smooth
-        /// </summary>
-        ALPHA_SMOOTH,
-        /// <summary>
-        /// The alph a_ default
-        /// </summary>
-        ALPHA_DEFAULT
-    }
+    ALPHA_NONE,
+    /// <summary>
+    /// The alph a_ binary
+    /// </summary>
+    ALPHA_BINARY,
+    /// <summary>
+    /// The alph a_ smooth
+    /// </summary>
+    ALPHA_SMOOTH,
+    /// <summary>
+    /// The alph a_ default
+    /// </summary>
+    ALPHA_DEFAULT
 }

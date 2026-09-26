@@ -17,41 +17,43 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiString.
+/// </summary>
+public class NiString
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The value
+    /// </summary>
+    public string Value;
 
     /// <summary>
-    /// Class NiString.
+    /// Initializes a new instance of the <see cref="NiString"/> class.
     /// </summary>
-    public class NiString
-	{
-        /// <summary>
-        /// The value
-        /// </summary>
-        public string Value;
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiString(NiFile file, BinaryReader reader)
+    {
+        var count = reader.ReadUInt32();
+        if (count > 16384)
+        {
+            throw new NotSupportedException("String too long. Not a NIF file or unsupported format?");
+        }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiString"/> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiString(NiFile file, BinaryReader reader)
-		{
-        	var count = reader.ReadUInt32();
-        	if (count > 16384)
-        		throw new NotSupportedException("String too long. Not a NIF file or unsupported format?");
-        	this.Value = new string(reader.ReadChars((int)count));
-		}
+        this.Value = new string(reader.ReadChars((int)count));
+    }
 
-        /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
-        /// </summary>
-        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-        public override string ToString()
-		{
-			return this.Value;
-		}
-	}
+    /// <summary>
+    /// Returns a <see cref="System.String" /> that represents this instance.
+    /// </summary>
+    /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+    public override string ToString()
+    {
+        return this.Value;
+    }
 }

@@ -17,32 +17,31 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiAlphaController.
+/// </summary>
+public class NiAlphaController : NiFloatInterpController
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The data
+    /// </summary>
+    public NiRef<NiFloatData> Data;
 
     /// <summary>
-    /// Class NiAlphaController.
+    /// Initializes a new instance of the <see cref="NiAlphaController" /> class.
     /// </summary>
-    public class NiAlphaController : NiFloatInterpController
-	{
-        /// <summary>
-        /// The data
-        /// </summary>
-        public NiRef<NiFloatData> Data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiAlphaController" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiAlphaController(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version <= eNifVersion.VER_10_1_0_0)
-			{
-				this.Data = new NiRef<NiFloatData>(reader);
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiAlphaController(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version <= eNifVersion.VER_10_1_0_0)
+        {
+            this.Data = new NiRef<NiFloatData>(reader);
+        }
+    }
 }

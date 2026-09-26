@@ -17,32 +17,31 @@
  *
  */
 
-namespace Niflib
+using System;
+using System.IO;
+
+namespace Niflib;
+
+/// <summary>
+/// Class NiBillboardNode.
+/// </summary>
+public class NiBillboardNode : NiNode
 {
-	using System;
-	using System.IO;
+    /// <summary>
+    /// The billboard mode
+    /// </summary>
+    public eBillboardMode BillboardMode;
 
     /// <summary>
-    /// Class NiBillboardNode.
+    /// Initializes a new instance of the <see cref="NiBillboardNode" /> class.
     /// </summary>
-    public class NiBillboardNode : NiNode
-	{
-        /// <summary>
-        /// The billboard mode
-        /// </summary>
-        public eBillboardMode BillboardMode;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NiBillboardNode" /> class.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="reader">The reader.</param>
-        public NiBillboardNode(NiFile file, BinaryReader reader) : base(file, reader)
-		{
-			if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
-			{
-				this.BillboardMode = (eBillboardMode)reader.ReadUInt16();
-			}
-		}
-	}
+    /// <param name="file">The file.</param>
+    /// <param name="reader">The reader.</param>
+    public NiBillboardNode(NiFile file, BinaryReader reader) : base(file, reader)
+    {
+        if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
+        {
+            this.BillboardMode = (eBillboardMode)reader.ReadUInt16();
+        }
+    }
 }
