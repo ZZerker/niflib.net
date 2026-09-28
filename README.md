@@ -12,9 +12,23 @@ Fork of [dol-leodagan/niflib.net](https://github.com/dol-leodagan/niflib.net), m
 
 ## Build
 
+Install the .NET 10 SDK, then build the solution:
+
+```powershell
+dotnet build Niflib.slnx -c Release
 ```
+
+You can also build the project directly:
+
+```powershell
 dotnet build Niflib.csproj -c Release
 ```
+
+## Source layout
+
+Source files under `Niflib` are grouped by feature: core object types, file IO, scene graph, geometry, skinning, animation, rendering, particles, extra data, numerics, and traversal. Related data types, records, controllers, properties, textures, and effects stay with the feature that owns them.
+
+Folders organize the source tree but do not define namespaces. Existing namespaces remain unchanged to preserve the public API and the reflection-based block loader. New files should be placed with the closest existing feature while following that namespace compatibility rule.
 
 ## Origin
 
