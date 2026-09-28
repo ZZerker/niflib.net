@@ -17,13 +17,10 @@
  *
  */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
-using Niflib;
 
-namespace Niflib.Extensions;
+namespace Niflib;
 
 /// <summary>
 /// Helper Class for Browsing Nodes in a Nif File

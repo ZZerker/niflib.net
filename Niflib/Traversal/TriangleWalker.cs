@@ -27,25 +27,6 @@ using Niflib;
 namespace Niflib.Extensions;
 
 /// <summary>
-/// Triangle Indexes Struct
-/// </summary>
-public struct TriangleIndex
-{
-    public uint A;
-    public uint B;
-    public uint C;
-}
-
-/// <summary>
-/// Triangles Collection Struct with TriangleIndex'ed Vertices
-/// </summary>
-public struct TriangleCollection
-{
-    public Vector3[] Vertices;
-    public TriangleIndex[] Indices;
-}
-
-/// <summary>
 /// Helper Class for Browsing Triangle Shape in a Nif File.
 /// </summary>
 public static class TriangleWalker
